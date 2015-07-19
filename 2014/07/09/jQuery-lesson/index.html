@@ -1,0 +1,441 @@
+
+ <!DOCTYPE HTML>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+  
+    <title>jQuery学习笔记 | CC&#39;s BLOG</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1,user-scalable=no">
+    
+    <meta name="author" content="Du Keke">
+    
+
+    
+    <meta name="description" content="启动函数  $(document).ready();
+-$() 表示,这是跟jQuery相关的东西;
+-document 把它放到两个括号间是告诉我们是对HTML的document对象进行处理;
+-.ready(); 这个函数是在document对象载入完毕后立刻执行的;
+
+
+
+与`window.onload`的不同:  
+- `$.ready()`比`onload`执行的要早，在DOM树结构完成">
+<meta property="og:type" content="article">
+<meta property="og:title" content="jQuery学习笔记">
+<meta property="og:url" content="http://cfanlife.github.io/2014/07/09/jQuery-lesson/index.html">
+<meta property="og:site_name" content="CC's BLOG">
+<meta property="og:description" content="启动函数  $(document).ready();
+-$() 表示,这是跟jQuery相关的东西;
+-document 把它放到两个括号间是告诉我们是对HTML的document对象进行处理;
+-.ready(); 这个函数是在document对象载入完毕后立刻执行的;
+
+
+
+与`window.onload`的不同:  
+- `$.ready()`比`onload`执行的要早，在DOM树结构完成">
+<meta property="og:updated_time" content="2015-03-07T15:55:30.347Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="jQuery学习笔记">
+<meta name="twitter:description" content="启动函数  $(document).ready();
+-$() 表示,这是跟jQuery相关的东西;
+-document 把它放到两个括号间是告诉我们是对HTML的document对象进行处理;
+-.ready(); 这个函数是在document对象载入完毕后立刻执行的;
+
+
+
+与`window.onload`的不同:  
+- `$.ready()`比`onload`执行的要早，在DOM树结构完成">
+
+    
+    <link rel="alternative" href="/atom.xml" title="CC&#39;s BLOG" type="application/atom+xml">
+    
+    
+    <link rel="icon" href="/img/favicon.jpg">
+    
+    
+    <link rel="apple-touch-icon" href="/img/jacman.jpg">
+    <link rel="apple-touch-icon-precomposed" href="/img/jacman.jpg">
+    
+    <link rel="stylesheet" href="/css/style.css" type="text/css">
+</head>
+
+  <body>
+    <header>
+      
+<div>
+		
+			<div id="imglogo">
+				<a href="/"><img src="/img/logo.jpg" alt="CC&#39;s BLOG" title="CC&#39;s BLOG"/></a>
+			</div>
+			
+			<div id="textlogo">
+				<h1 class="site-name"><a href="/" title="CC&#39;s BLOG">CC&#39;s BLOG</a></h1>
+				<h2 class="blog-motto">如果你在计划未来，那么就要抓住现在</h2>
+			</div>
+			<div class="navbar"><a class="navbutton navmobile" href="#" title="菜单">
+			</a></div>
+			<nav class="animated">
+				<ul>
+					<ul>
+					 
+						<li><a href="/">主页</a></li>
+					
+						<li><a href="/archives">归档</a></li>
+					
+						<li><a href="/about">关于</a></li>
+					
+					<li>
+ 					
+					<form class="search" action="//google.com/search" method="get" accept-charset="utf-8">
+						<label>Search</label>
+						<input type="search" id="search" name="q" autocomplete="off" maxlength="20" placeholder="搜索" />
+						<input type="hidden" name="q" value="site:cfanlife.github.io">
+					</form>
+					
+					</li>
+				</ul>
+			</nav>			
+</div>
+    </header>
+    <div id="container">
+      <div id="main" class="post" itemscope itemprop="blogPost">
+  
+	<article itemprop="articleBody"> 
+		<header class="article-info clearfix">
+  <h1 itemprop="name">
+    
+      <a href="/2014/07/09/jQuery-lesson/" title="jQuery学习笔记" itemprop="url">jQuery学习笔记</a>
+  </h1>
+  <p class="article-author">By
+       
+		<a href="/about" title="Du Keke" target="_blank" itemprop="author">Du Keke</a>
+		
+  <p class="article-time">
+    <time datetime="2014-07-08T16:00:00.000Z" itemprop="datePublished"> 发表于 2014-07-09</time>
+    
+  </p>
+</header>
+	<div class="article-content">
+		
+		<div id="toc" class="toc-article">
+			<strong class="toc-title">文章目录</strong>
+		
+			
+		
+		</div>
+		
+		<ul>
+<li>启动函数<br>  <code>$(document).ready();</code><ul>
+<li>-<code>$()</code> 表示,这是跟jQuery相关的东西;</li>
+<li>-<code>document</code> 把它放到两个括号间是告诉我们是对HTML的<code>document</code>对象进行处理;</li>
+<li>-<code>.ready();</code> 这个函数是在<code>document</code>对象载入完毕后立刻执行的;</li>
+</ul>
+</li>
+</ul>
+<pre><code><span class="label">与`window.onload`的不同:</span>  
+- <span class="escape">`$</span>.ready()<span class="escape">`比</span><span class="escape">`o</span>nload<span class="escape">`执</span>行的要早，在DOM树结构完成后便会执行<span class="escape">`r</span>eady()<span class="escape">`里</span>的函数。而<span class="escape">`o</span>nload<span class="escape">`会</span>在页面加载完毕后才执行，明显就会慢了一个档次
+
+- <span class="escape">`$</span>.ready()<span class="escape">`可</span>以执行多个。如果一段代码中有多个<span class="escape">`$</span>.ready()<span class="escape">`,</span>那么加载次序是按从上到下的顺序执行的。而<span class="escape">`o</span>nload<span class="escape">`只</span>能执行一次，有多个的话只执行最后面的，默认覆盖了前面的函数
+</code></pre><ul>
+<li>强大的选择器</li>
+<li><p>连缀式写法</p>
+</li>
+<li><p>灵活的Ajax</p>
+</li>
+<li><p>事件处理</p>
+</li>
+<li><p>promise对象</p>
+</li>
+</ul>
+  
+	</div>
+		<footer class="article-footer clearfix">
+<div class="article-catetags">
+
+
+</div>
+
+
+
+	<div class="article-share" id="share">
+	
+	  <div data-url="http://cfanlife.github.io/2014/07/09/jQuery-lesson/" data-title="jQuery学习笔记 | CC&#39;s BLOG" data-tsina="1743290140" class="share clearfix">
+	  </div>
+	
+	</div>
+
+
+</footer>
+
+   	       
+	</article>
+	
+<nav class="article-nav clearfix">
+ 
+ <div class="prev" >
+ <a href="/2014/07/20/JavaScript-protype-and-constructor/" title="JavaScript的原型机制">
+  <strong>上一篇：</strong><br/>
+  <span>
+  JavaScript的原型机制</span>
+</a>
+</div>
+
+
+<div class="next">
+<a href="/2014/07/03/Html-CSS-lesson/"  title="HTML&amp;CSS学习笔记">
+ <strong>下一篇：</strong><br/> 
+ <span>HTML&amp;CSS学习笔记
+</span>
+</a>
+</div>
+
+</nav>
+
+	
+
+</div>  
+      <div class="openaside"><a class="navbutton" href="#" title="显示侧边栏"></a></div>
+
+  <div id="toc" class="toc-aside">
+  <strong class="toc-title">文章目录</strong>
+ 
+ 
+ 
+  </div>
+
+<div id="asidepart">
+<div class="closeaside"><a class="closebutton" href="#" title="隐藏侧边栏"></a></div>
+<aside class="clearfix">
+
+  
+
+  
+
+  
+
+
+  <div class="weiboshow">
+  <p class="asidetitle">新浪微博</p>
+    <iframe width="100%" height="119" class="share_self"  frameborder="0" scrolling="no" src="http://widget.weibo.com/weiboshow/index.php?language=&width=0&height=119&fansRow=2&ptype=1&speed=0&skin=9&isTitle=1&noborder=1&isWeibo=0&isFans=0&uid=1743290140&verifier=7cf53c5c&dpc=1"></iframe>
+</div>
+
+
+  <div class="linkslist">
+  <p class="asidetitle">友情链接</p>
+    <ul>
+        
+          <li>
+            
+            	<a href="http://www.jianshu.com/users/d6e83ee69161/latest_articles" target="_blank" title="可木Changer">可木Changer</a>
+            
+          </li>
+        
+    </ul>
+</div>
+
+</aside>
+</div>
+    </div>
+    <footer><div id="footer" >
+	
+	
+	<div class="social-font" class="clearfix">
+		
+		<a href="http://weibo.com/1743290140" target="_blank" class="icon-weibo" title="微博"></a>
+		
+		
+		<a href="https://github.com/cfanlife" target="_blank" class="icon-github" title="github"></a>
+		
+		
+		
+		
+		
+		
+		
+		
+		
+	</div>
+			
+		
+
+		<p class="copyright">
+		Powered by <a href="http://hexo.io" target="_blank" title="hexo">hexo</a> and Theme Modified From <a href="https://github.com/wuchong/jacman" target="_blank" title="Jacman">Jacman</a> © 2015 
+		
+		<a href="/about" target="_blank" title="Du Keke">Du Keke</a>
+		
+		
+		</p>
+</div>
+</footer>
+    <script src="/js/jquery-2.0.3.min.js"></script>
+<script src="/js/jquery.imagesloaded.min.js"></script>
+<script src="/js/gallery.js"></script>
+
+<script type="text/javascript">
+$(document).ready(function(){ 
+  $('.navbar').click(function(){
+    $('header nav').toggleClass('shownav');
+  });
+  var myWidth = 0;
+  function getSize(){
+    if( typeof( window.innerWidth ) == 'number' ) {
+      myWidth = window.innerWidth;
+    } else if( document.documentElement && document.documentElement.clientWidth) {
+      myWidth = document.documentElement.clientWidth;
+    };
+  };
+  var m = $('#main'),
+      a = $('#asidepart'),
+      c = $('.closeaside'),
+      o = $('.openaside');
+  c.click(function(){
+    a.addClass('fadeOut').css('display', 'none');
+    o.css('display', 'block').addClass('fadeIn');
+    m.addClass('moveMain');
+  });
+  o.click(function(){
+    o.css('display', 'none').removeClass('beforeFadeIn');
+    a.css('display', 'block').removeClass('fadeOut').addClass('fadeIn');      
+    m.removeClass('moveMain');
+  });
+  $(window).scroll(function(){
+    o.css("top",Math.max(80,260-$(this).scrollTop()));
+  });
+  
+        getSize();
+        if (myWidth >= 1024) {
+          c.click();
+        }
+  
+  $(window).resize(function(){
+    getSize(); 
+    if (myWidth >= 1024) {
+      $('header nav').removeClass('shownav');
+    }else{
+      m.removeClass('moveMain');
+      a.css('display', 'block').removeClass('fadeOut');
+      o.css('display', 'none');
+      
+      $('#toc.toc-aside').css('display', 'none');
+        
+    }
+  });
+});
+</script>
+
+<script type="text/javascript">
+$(document).ready(function(){ 
+  var ai = $('.article-content>iframe'),
+      ae = $('.article-content>embed'),
+      t  = $('#toc'),
+      ta = $('#toc.toc-aside'),
+      o  = $('.openaside'),
+      c  = $('.closeaside');
+  if(ai.length>0){
+    ai.wrap('<div class="video-container" />');
+  };
+  if(ae.length>0){
+   ae.wrap('<div class="video-container" />');
+  };
+  c.click(function(){
+    ta.css('display', 'block').addClass('fadeIn');
+  });
+  o.click(function(){
+    ta.css('display', 'none');
+  });
+  $(window).scroll(function(){
+    ta.css("top",Math.max(140,320-$(this).scrollTop()));
+  });
+});
+</script>
+
+
+<script type="text/javascript">
+$(document).ready(function(){ 
+  var $this = $('.share'),
+      url = $this.attr('data-url'),
+      encodedUrl = encodeURIComponent(url),
+      title = $this.attr('data-title'),
+      tsina = $this.attr('data-tsina'),
+      description = $this.attr('description');
+  var html = [
+  '<a href="#" class="overlay" id="qrcode"></a>',
+  '<div class="qrcode clearfix"><span>扫描二维码分享到微信朋友圈</span><a class="qrclose" href="#nothing"></a><strong>Loading...Please wait</strong><img id="qrcode-pic" data-src="http://s.jiathis.com/qrcode.php?url=' + encodedUrl + '"/></div>',
+  '<a href="https://www.facebook.com/sharer.php?u=' + encodedUrl + '" class="article-share-facebook" target="_blank" title="Facebook"></a>',
+  '<a href="https://twitter.com/intent/tweet?url=' + encodedUrl + '" class="article-share-twitter" target="_blank" title="Twitter"></a>',
+  '<a href="#qrcode" class="article-share-qrcode" title="微信"></a>',
+  '<a href="http://widget.renren.com/dialog/share?resourceUrl=' + encodedUrl + '&srcUrl=' + encodedUrl + '&title=' + title +'" class="article-share-renren" target="_blank" title="人人"></a>',
+  '<a href="http://service.weibo.com/share/share.php?title='+title+'&url='+encodedUrl +'&ralateUid='+ tsina +'&searchPic=true&style=number' +'" class="article-share-weibo" target="_blank" title="微博"></a>',
+  '<span title="Share to"></span>'
+  ].join('');
+  $this.append(html);
+  $('.article-share-qrcode').click(function(){
+    var imgSrc = $('#qrcode-pic').attr('data-src');
+    $('#qrcode-pic').attr('src', imgSrc);
+    $('#qrcode-pic').load(function(){
+        $('.qrcode strong').text(' ');
+    });
+  });
+});     
+</script>
+
+
+
+
+
+
+
+
+
+<link rel="stylesheet" href="/fancybox/jquery.fancybox.css" media="screen" type="text/css">
+<script src="/fancybox/jquery.fancybox.pack.js"></script>
+<script type="text/javascript">
+$(document).ready(function(){ 
+  $('.article-content').each(function(i){
+    $(this).find('img').each(function(){
+      if ($(this).parent().hasClass('fancybox')) return;
+      var alt = this.alt;
+      if (alt) $(this).after('<span class="caption">' + alt + '</span>');
+      $(this).wrap('<a href="' + this.src + '" title="' + alt + '" class="fancybox"></a>');
+    });
+    $(this).find('.fancybox').each(function(){
+      $(this).attr('rel', 'article' + i);
+    });
+  });
+  if($.fancybox){
+    $('.fancybox').fancybox();
+  }
+}); 
+</script>
+
+
+
+<!-- Analytics Begin -->
+
+
+
+
+
+<!-- Analytics End -->
+
+<!-- Totop Begin -->
+
+	<div id="totop">
+	<a title="返回顶部"><img src="/img/scrollup.png"/></a>
+	</div>
+	<script src="/js/totop.js"></script>
+
+<!-- Totop End -->
+
+<!-- MathJax Begin -->
+<!-- mathjax config similar to math.stackexchange -->
+
+
+<!-- MathJax End -->
+
+<!-- Tiny_search Begin -->
+
+<!-- Tiny_search End -->
+
+  </body>
+</html>

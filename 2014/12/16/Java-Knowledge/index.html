@@ -1,0 +1,547 @@
+
+ <!DOCTYPE HTML>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+  
+    <title>Java知识点 | CC&#39;s BLOG</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1,user-scalable=no">
+    
+    <meta name="author" content="Du Keke">
+    
+
+    
+    <meta name="description" content="1. 类名与文件名之间的关系
+如果一个编译单元（文件）中含有public的类，则文件名必须与类名一致，如果没有public类，则文件可以随意命名。
+
+
+一个文件中，public的类可以有零个或一个，非public的类可以有零个或多个
+
+2. 不同修饰符的作用范围
+
+
+修饰名称
+作用范围
+备注
+
+
+
+
+private
+类内
+不同类之间不能访问
+
+
+default
+类内+包内
+在不同的包中import">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Java知识点">
+<meta property="og:url" content="http://cfanlife.github.io/2014/12/16/Java-Knowledge/index.html">
+<meta property="og:site_name" content="CC's BLOG">
+<meta property="og:description" content="1. 类名与文件名之间的关系
+如果一个编译单元（文件）中含有public的类，则文件名必须与类名一致，如果没有public类，则文件可以随意命名。
+
+
+一个文件中，public的类可以有零个或一个，非public的类可以有零个或多个
+
+2. 不同修饰符的作用范围
+
+
+修饰名称
+作用范围
+备注
+
+
+
+
+private
+类内
+不同类之间不能访问
+
+
+default
+类内+包内
+在不同的包中import">
+<meta property="og:updated_time" content="2015-06-29T14:09:10.611Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="Java知识点">
+<meta name="twitter:description" content="1. 类名与文件名之间的关系
+如果一个编译单元（文件）中含有public的类，则文件名必须与类名一致，如果没有public类，则文件可以随意命名。
+
+
+一个文件中，public的类可以有零个或一个，非public的类可以有零个或多个
+
+2. 不同修饰符的作用范围
+
+
+修饰名称
+作用范围
+备注
+
+
+
+
+private
+类内
+不同类之间不能访问
+
+
+default
+类内+包内
+在不同的包中import">
+
+    
+    <link rel="alternative" href="/atom.xml" title="CC&#39;s BLOG" type="application/atom+xml">
+    
+    
+    <link rel="icon" href="/img/favicon.jpg">
+    
+    
+    <link rel="apple-touch-icon" href="/img/jacman.jpg">
+    <link rel="apple-touch-icon-precomposed" href="/img/jacman.jpg">
+    
+    <link rel="stylesheet" href="/css/style.css" type="text/css">
+</head>
+
+  <body>
+    <header>
+      
+<div>
+		
+			<div id="imglogo">
+				<a href="/"><img src="/img/logo.jpg" alt="CC&#39;s BLOG" title="CC&#39;s BLOG"/></a>
+			</div>
+			
+			<div id="textlogo">
+				<h1 class="site-name"><a href="/" title="CC&#39;s BLOG">CC&#39;s BLOG</a></h1>
+				<h2 class="blog-motto">如果你在计划未来，那么就要抓住现在</h2>
+			</div>
+			<div class="navbar"><a class="navbutton navmobile" href="#" title="菜单">
+			</a></div>
+			<nav class="animated">
+				<ul>
+					<ul>
+					 
+						<li><a href="/">主页</a></li>
+					
+						<li><a href="/archives">归档</a></li>
+					
+						<li><a href="/about">关于</a></li>
+					
+					<li>
+ 					
+					<form class="search" action="//google.com/search" method="get" accept-charset="utf-8">
+						<label>Search</label>
+						<input type="search" id="search" name="q" autocomplete="off" maxlength="20" placeholder="搜索" />
+						<input type="hidden" name="q" value="site:cfanlife.github.io">
+					</form>
+					
+					</li>
+				</ul>
+			</nav>			
+</div>
+    </header>
+    <div id="container">
+      <div id="main" class="post" itemscope itemprop="blogPost">
+  
+	<article itemprop="articleBody"> 
+		<header class="article-info clearfix">
+  <h1 itemprop="name">
+    
+      <a href="/2014/12/16/Java-Knowledge/" title="Java知识点" itemprop="url">Java知识点</a>
+  </h1>
+  <p class="article-author">By
+       
+		<a href="/about" title="Du Keke" target="_blank" itemprop="author">Du Keke</a>
+		
+  <p class="article-time">
+    <time datetime="2014-12-15T16:00:00.000Z" itemprop="datePublished"> 发表于 2014-12-16</time>
+    
+  </p>
+</header>
+	<div class="article-content">
+		
+		<div id="toc" class="toc-article">
+			<strong class="toc-title">文章目录</strong>
+		
+			<ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#1-_类名与文件名之间的关系"><span class="toc-number">1.</span> <span class="toc-text">1. 类名与文件名之间的关系</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#2-_不同修饰符的作用范围"><span class="toc-number">2.</span> <span class="toc-text">2. 不同修饰符的作用范围</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#3-_可import类的范围"><span class="toc-number">3.</span> <span class="toc-text">3. 可import类的范围</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#4-_代码块{}"><span class="toc-number">4.</span> <span class="toc-text">4. 代码块{}</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#5-_final关键字"><span class="toc-number">5.</span> <span class="toc-text">5. final关键字</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#6-抽象类与接口的区别"><span class="toc-number">6.</span> <span class="toc-text">6.抽象类与接口的区别</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#7-_接口的多态性"><span class="toc-number">7.</span> <span class="toc-text">7. 接口的多态性</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#8-_MySQL中char与varchar的区别"><span class="toc-number">8.</span> <span class="toc-text">8. MySQL中char与varchar的区别</span></a></li></ol>
+		
+		</div>
+		
+		<h2 id="1-_类名与文件名之间的关系">1. 类名与文件名之间的关系</h2><ul>
+<li>如果一个编译单元（文件）中含有public的类，则文件名必须与类名一致，如果没有public类，则文件可以随意命名。</li>
+</ul>
+<ul>
+<li>一个文件中，public的类可以有零个或一个，非public的类可以有零个或多个</li>
+</ul>
+<h2 id="2-_不同修饰符的作用范围">2. 不同修饰符的作用范围</h2><table>
+<thead>
+<tr>
+<th style="text-align:center">修饰名称</th>
+<th style="text-align:center">作用范围</th>
+<th style="text-align:center">备注</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align:center">private</td>
+<td style="text-align:center">类内</td>
+<td style="text-align:center">不同类之间不能访问</td>
+</tr>
+<tr>
+<td style="text-align:center">default</td>
+<td style="text-align:center">类内+包内</td>
+<td style="text-align:center">在不同的包中import后,也不能访问</td>
+</tr>
+<tr>
+<td style="text-align:center">protect</td>
+<td style="text-align:center">类内+包内+继承内</td>
+</tr>
+<tr>
+<td style="text-align:center">public</td>
+<td style="text-align:center">公共</td>
+</tr>
+</tbody>
+</table>
+<h2 id="3-_可import类的范围">3. 可import类的范围</h2><ul>
+<li>如果一个类不是公共的，而是默认类型，在同包下无需导入即可使用.外面的包无法导入这个默认类型类，此类对包外不可见</li>
+</ul>
+<ul>
+<li>com.cc和com.cc.child虽然在文件结构上是从属关系，但是对于包这个概念来说，两者是不同的包，不存在包含关系</li>
+</ul>
+<h2 id="4-_代码块{}">4. 代码块<code>{}</code></h2><p>如果多个类中同时存在代码块,且存在继承关系,则代码块的执行自上而下(从父到子)</p>
+<ul>
+<li>非静态代码块<ul>
+<li>每次创建对象时,非静态代码块就会执行</li>
+<li>非静态代码块的执行在构造器之前(和属性声明初始化同级执行优先权,谁在前谁先执行)</li>
+<li>可调用静态和非静态的属性和方法</li>
+</ul>
+</li>
+<li>静态代码块<ul>
+<li>随着类的加载而加载,只被加载一次</li>
+<li>早于非静态代码块</li>
+<li>只能对静态属性和方法进行调用</li>
+</ul>
+</li>
+</ul>
+<h2 id="5-_final关键字">5. final关键字</h2><ul>
+<li>final类不能被继承,final方法不能被重写,final属性是个常量,对象构建前需要初始化</li>
+<li>可在代码块中对final属性进行赋值,即在对象构造出来前对其进行赋值</li>
+<li>若只在构造器中进行赋值,则每个构造器中都必须对final常量进行赋值</li>
+<li>总之,构造对象前需要对final进行赋值</li>
+</ul>
+<h2 id="6-抽象类与接口的区别">6.抽象类与接口的区别</h2><ul>
+<li>接口可以看作是一个特殊的抽象类，是常量与抽象方法的集合</li>
+<li>抽象类可以定义变量和非抽象方法</li>
+<li>接口中所有的常量都用public static final来修饰（不显示的写上，默认前面会自动填上）</li>
+<li>接口中所有的方法都用public abstract修饰</li>
+<li>接口中没有构造器，无法实例化;抽象类有构造器，但无法实例化（因为它可被子类继承，子类需要实例化）</li>
+<li>接口定义的是一系列功能，这些功能被类所实现</li>
+<li>实现接口的类必须补全接口中所有的抽象方法，不然就没法实例化，还得是个抽象类</li>
+<li>类可以实现多接口；接口与接口之间可继承，而且可多继承</li>
+</ul>
+<h2 id="7-_接口的多态性">7. 接口的多态性</h2><ul>
+<li>接口可以和实现它的类进行多态转换</li>
+<li>接收参数为接口，传入对象为实现类对象，和子类父类转换的方式相似</li>
+</ul>
+<h2 id="8-_MySQL中char与varchar的区别">8. MySQL中char与varchar的区别</h2><p>char是静态的，char(10)代表能存放10个字符，每次开辟的空间都是固定的。</p>
+<p>varchar是动态的，varchar(10)代表能存放10个字符，但会根据存放数据的大小来调整。varchar类型需要在数据之前利用一个或者两个字节来存储数据的长度。</p>
+<ul>
+<li><p>对于VARCHAR数据类型来说，硬盘上的存储空间虽然都是根据实际字符长度来分配存储空间的。但是对于内存，则是使用固定大小的内存块来保存值。简单的说，就是使用字符类型中定义的长度，即200个字符空间。</p>
+</li>
+<li><p>显然，这对于排序或者临时表(这些内容都需要通过内存来实现)作业会产生比较大的不利影响。</p>
+</li>
+</ul>
+  
+	</div>
+		<footer class="article-footer clearfix">
+<div class="article-catetags">
+
+
+</div>
+
+
+
+	<div class="article-share" id="share">
+	
+	  <div data-url="http://cfanlife.github.io/2014/12/16/Java-Knowledge/" data-title="Java知识点 | CC&#39;s BLOG" data-tsina="1743290140" class="share clearfix">
+	  </div>
+	
+	</div>
+
+
+</footer>
+
+   	       
+	</article>
+	
+<nav class="article-nav clearfix">
+ 
+ <div class="prev" >
+ <a href="/2014/12/27/Carriage-Return-And-Line-Feed/" title="回车与换行的由来">
+  <strong>上一篇：</strong><br/>
+  <span>
+  回车与换行的由来</span>
+</a>
+</div>
+
+
+<div class="next">
+<a href="/2014/11/26/Environment-Variable-Needs-for-Java-and-Tomcat/"  title="JDK及Tomcat环境变量配置详解">
+ <strong>下一篇：</strong><br/> 
+ <span>JDK及Tomcat环境变量配置详解
+</span>
+</a>
+</div>
+
+</nav>
+
+	
+
+</div>  
+      <div class="openaside"><a class="navbutton" href="#" title="显示侧边栏"></a></div>
+
+  <div id="toc" class="toc-aside">
+  <strong class="toc-title">文章目录</strong>
+ 
+ <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#1-_类名与文件名之间的关系"><span class="toc-number">1.</span> <span class="toc-text">1. 类名与文件名之间的关系</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#2-_不同修饰符的作用范围"><span class="toc-number">2.</span> <span class="toc-text">2. 不同修饰符的作用范围</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#3-_可import类的范围"><span class="toc-number">3.</span> <span class="toc-text">3. 可import类的范围</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#4-_代码块{}"><span class="toc-number">4.</span> <span class="toc-text">4. 代码块{}</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#5-_final关键字"><span class="toc-number">5.</span> <span class="toc-text">5. final关键字</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#6-抽象类与接口的区别"><span class="toc-number">6.</span> <span class="toc-text">6.抽象类与接口的区别</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#7-_接口的多态性"><span class="toc-number">7.</span> <span class="toc-text">7. 接口的多态性</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#8-_MySQL中char与varchar的区别"><span class="toc-number">8.</span> <span class="toc-text">8. MySQL中char与varchar的区别</span></a></li></ol>
+ 
+  </div>
+
+<div id="asidepart">
+<div class="closeaside"><a class="closebutton" href="#" title="隐藏侧边栏"></a></div>
+<aside class="clearfix">
+
+  
+
+  
+
+  
+
+
+  <div class="weiboshow">
+  <p class="asidetitle">新浪微博</p>
+    <iframe width="100%" height="119" class="share_self"  frameborder="0" scrolling="no" src="http://widget.weibo.com/weiboshow/index.php?language=&width=0&height=119&fansRow=2&ptype=1&speed=0&skin=9&isTitle=1&noborder=1&isWeibo=0&isFans=0&uid=1743290140&verifier=7cf53c5c&dpc=1"></iframe>
+</div>
+
+
+  <div class="linkslist">
+  <p class="asidetitle">友情链接</p>
+    <ul>
+        
+          <li>
+            
+            	<a href="http://www.jianshu.com/users/d6e83ee69161/latest_articles" target="_blank" title="可木Changer">可木Changer</a>
+            
+          </li>
+        
+    </ul>
+</div>
+
+</aside>
+</div>
+    </div>
+    <footer><div id="footer" >
+	
+	
+	<div class="social-font" class="clearfix">
+		
+		<a href="http://weibo.com/1743290140" target="_blank" class="icon-weibo" title="微博"></a>
+		
+		
+		<a href="https://github.com/cfanlife" target="_blank" class="icon-github" title="github"></a>
+		
+		
+		
+		
+		
+		
+		
+		
+		
+	</div>
+			
+		
+
+		<p class="copyright">
+		Powered by <a href="http://hexo.io" target="_blank" title="hexo">hexo</a> and Theme Modified From <a href="https://github.com/wuchong/jacman" target="_blank" title="Jacman">Jacman</a> © 2015 
+		
+		<a href="/about" target="_blank" title="Du Keke">Du Keke</a>
+		
+		
+		</p>
+</div>
+</footer>
+    <script src="/js/jquery-2.0.3.min.js"></script>
+<script src="/js/jquery.imagesloaded.min.js"></script>
+<script src="/js/gallery.js"></script>
+
+<script type="text/javascript">
+$(document).ready(function(){ 
+  $('.navbar').click(function(){
+    $('header nav').toggleClass('shownav');
+  });
+  var myWidth = 0;
+  function getSize(){
+    if( typeof( window.innerWidth ) == 'number' ) {
+      myWidth = window.innerWidth;
+    } else if( document.documentElement && document.documentElement.clientWidth) {
+      myWidth = document.documentElement.clientWidth;
+    };
+  };
+  var m = $('#main'),
+      a = $('#asidepart'),
+      c = $('.closeaside'),
+      o = $('.openaside');
+  c.click(function(){
+    a.addClass('fadeOut').css('display', 'none');
+    o.css('display', 'block').addClass('fadeIn');
+    m.addClass('moveMain');
+  });
+  o.click(function(){
+    o.css('display', 'none').removeClass('beforeFadeIn');
+    a.css('display', 'block').removeClass('fadeOut').addClass('fadeIn');      
+    m.removeClass('moveMain');
+  });
+  $(window).scroll(function(){
+    o.css("top",Math.max(80,260-$(this).scrollTop()));
+  });
+  
+        getSize();
+        if (myWidth >= 1024) {
+          c.click();
+        }
+  
+  $(window).resize(function(){
+    getSize(); 
+    if (myWidth >= 1024) {
+      $('header nav').removeClass('shownav');
+    }else{
+      m.removeClass('moveMain');
+      a.css('display', 'block').removeClass('fadeOut');
+      o.css('display', 'none');
+      
+      $('#toc.toc-aside').css('display', 'none');
+        
+    }
+  });
+});
+</script>
+
+<script type="text/javascript">
+$(document).ready(function(){ 
+  var ai = $('.article-content>iframe'),
+      ae = $('.article-content>embed'),
+      t  = $('#toc'),
+      ta = $('#toc.toc-aside'),
+      o  = $('.openaside'),
+      c  = $('.closeaside');
+  if(ai.length>0){
+    ai.wrap('<div class="video-container" />');
+  };
+  if(ae.length>0){
+   ae.wrap('<div class="video-container" />');
+  };
+  c.click(function(){
+    ta.css('display', 'block').addClass('fadeIn');
+  });
+  o.click(function(){
+    ta.css('display', 'none');
+  });
+  $(window).scroll(function(){
+    ta.css("top",Math.max(140,320-$(this).scrollTop()));
+  });
+});
+</script>
+
+
+<script type="text/javascript">
+$(document).ready(function(){ 
+  var $this = $('.share'),
+      url = $this.attr('data-url'),
+      encodedUrl = encodeURIComponent(url),
+      title = $this.attr('data-title'),
+      tsina = $this.attr('data-tsina'),
+      description = $this.attr('description');
+  var html = [
+  '<a href="#" class="overlay" id="qrcode"></a>',
+  '<div class="qrcode clearfix"><span>扫描二维码分享到微信朋友圈</span><a class="qrclose" href="#nothing"></a><strong>Loading...Please wait</strong><img id="qrcode-pic" data-src="http://s.jiathis.com/qrcode.php?url=' + encodedUrl + '"/></div>',
+  '<a href="https://www.facebook.com/sharer.php?u=' + encodedUrl + '" class="article-share-facebook" target="_blank" title="Facebook"></a>',
+  '<a href="https://twitter.com/intent/tweet?url=' + encodedUrl + '" class="article-share-twitter" target="_blank" title="Twitter"></a>',
+  '<a href="#qrcode" class="article-share-qrcode" title="微信"></a>',
+  '<a href="http://widget.renren.com/dialog/share?resourceUrl=' + encodedUrl + '&srcUrl=' + encodedUrl + '&title=' + title +'" class="article-share-renren" target="_blank" title="人人"></a>',
+  '<a href="http://service.weibo.com/share/share.php?title='+title+'&url='+encodedUrl +'&ralateUid='+ tsina +'&searchPic=true&style=number' +'" class="article-share-weibo" target="_blank" title="微博"></a>',
+  '<span title="Share to"></span>'
+  ].join('');
+  $this.append(html);
+  $('.article-share-qrcode').click(function(){
+    var imgSrc = $('#qrcode-pic').attr('data-src');
+    $('#qrcode-pic').attr('src', imgSrc);
+    $('#qrcode-pic').load(function(){
+        $('.qrcode strong').text(' ');
+    });
+  });
+});     
+</script>
+
+
+
+
+
+
+
+
+
+<link rel="stylesheet" href="/fancybox/jquery.fancybox.css" media="screen" type="text/css">
+<script src="/fancybox/jquery.fancybox.pack.js"></script>
+<script type="text/javascript">
+$(document).ready(function(){ 
+  $('.article-content').each(function(i){
+    $(this).find('img').each(function(){
+      if ($(this).parent().hasClass('fancybox')) return;
+      var alt = this.alt;
+      if (alt) $(this).after('<span class="caption">' + alt + '</span>');
+      $(this).wrap('<a href="' + this.src + '" title="' + alt + '" class="fancybox"></a>');
+    });
+    $(this).find('.fancybox').each(function(){
+      $(this).attr('rel', 'article' + i);
+    });
+  });
+  if($.fancybox){
+    $('.fancybox').fancybox();
+  }
+}); 
+</script>
+
+
+
+<!-- Analytics Begin -->
+
+
+
+
+
+<!-- Analytics End -->
+
+<!-- Totop Begin -->
+
+	<div id="totop">
+	<a title="返回顶部"><img src="/img/scrollup.png"/></a>
+	</div>
+	<script src="/js/totop.js"></script>
+
+<!-- Totop End -->
+
+<!-- MathJax Begin -->
+<!-- mathjax config similar to math.stackexchange -->
+
+
+<!-- MathJax End -->
+
+<!-- Tiny_search Begin -->
+
+<!-- Tiny_search End -->
+
+  </body>
+</html>

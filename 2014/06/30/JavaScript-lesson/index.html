@@ -1,0 +1,541 @@
+
+ <!DOCTYPE HTML>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+  
+    <title>JavaScript基础学习笔记 | CC&#39;s BLOG</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1,user-scalable=no">
+    
+    <meta name="author" content="Du Keke">
+    
+
+    
+    <meta name="description" content="JavaScript中的传值与传址
+赋值语句中JavaScript中对基本类型的传递是传基本值,基本类型包括:Boolean,String,Number,Undefined and Null.注意:只有字面量(literal)的Boolean,String,Number,Undefined(实际值:undefined) and Null(实际值:null)才是,举个例子:  
+
+var b = n">
+<meta property="og:type" content="article">
+<meta property="og:title" content="JavaScript基础学习笔记">
+<meta property="og:url" content="http://cfanlife.github.io/2014/06/30/JavaScript-lesson/index.html">
+<meta property="og:site_name" content="CC's BLOG">
+<meta property="og:description" content="JavaScript中的传值与传址
+赋值语句中JavaScript中对基本类型的传递是传基本值,基本类型包括:Boolean,String,Number,Undefined and Null.注意:只有字面量(literal)的Boolean,String,Number,Undefined(实际值:undefined) and Null(实际值:null)才是,举个例子:  
+
+var b = n">
+<meta property="og:updated_time" content="2015-03-06T06:11:08.886Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="JavaScript基础学习笔记">
+<meta name="twitter:description" content="JavaScript中的传值与传址
+赋值语句中JavaScript中对基本类型的传递是传基本值,基本类型包括:Boolean,String,Number,Undefined and Null.注意:只有字面量(literal)的Boolean,String,Number,Undefined(实际值:undefined) and Null(实际值:null)才是,举个例子:  
+
+var b = n">
+
+    
+    <link rel="alternative" href="/atom.xml" title="CC&#39;s BLOG" type="application/atom+xml">
+    
+    
+    <link rel="icon" href="/img/favicon.jpg">
+    
+    
+    <link rel="apple-touch-icon" href="/img/jacman.jpg">
+    <link rel="apple-touch-icon-precomposed" href="/img/jacman.jpg">
+    
+    <link rel="stylesheet" href="/css/style.css" type="text/css">
+</head>
+
+  <body>
+    <header>
+      
+<div>
+		
+			<div id="imglogo">
+				<a href="/"><img src="/img/logo.jpg" alt="CC&#39;s BLOG" title="CC&#39;s BLOG"/></a>
+			</div>
+			
+			<div id="textlogo">
+				<h1 class="site-name"><a href="/" title="CC&#39;s BLOG">CC&#39;s BLOG</a></h1>
+				<h2 class="blog-motto">如果你在计划未来，那么就要抓住现在</h2>
+			</div>
+			<div class="navbar"><a class="navbutton navmobile" href="#" title="菜单">
+			</a></div>
+			<nav class="animated">
+				<ul>
+					<ul>
+					 
+						<li><a href="/">主页</a></li>
+					
+						<li><a href="/archives">归档</a></li>
+					
+						<li><a href="/about">关于</a></li>
+					
+					<li>
+ 					
+					<form class="search" action="//google.com/search" method="get" accept-charset="utf-8">
+						<label>Search</label>
+						<input type="search" id="search" name="q" autocomplete="off" maxlength="20" placeholder="搜索" />
+						<input type="hidden" name="q" value="site:cfanlife.github.io">
+					</form>
+					
+					</li>
+				</ul>
+			</nav>			
+</div>
+    </header>
+    <div id="container">
+      <div id="main" class="post" itemscope itemprop="blogPost">
+  
+	<article itemprop="articleBody"> 
+		<header class="article-info clearfix">
+  <h1 itemprop="name">
+    
+      <a href="/2014/06/30/JavaScript-lesson/" title="JavaScript基础学习笔记" itemprop="url">JavaScript基础学习笔记</a>
+  </h1>
+  <p class="article-author">By
+       
+		<a href="/about" title="Du Keke" target="_blank" itemprop="author">Du Keke</a>
+		
+  <p class="article-time">
+    <time datetime="2014-06-29T16:00:00.000Z" itemprop="datePublished"> 发表于 2014-06-30</time>
+    
+  </p>
+</header>
+	<div class="article-content">
+		
+		<div id="toc" class="toc-article">
+			<strong class="toc-title">文章目录</strong>
+		
+			<ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#JavaScript中的传值与传址"><span class="toc-number">1.</span> <span class="toc-text">JavaScript中的传值与传址</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#JavaScript创建对象的几种方法"><span class="toc-number">2.</span> <span class="toc-text">JavaScript创建对象的几种方法</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#JavaScript原型(prototype)对象"><span class="toc-number">3.</span> <span class="toc-text">JavaScript原型(prototype)对象</span></a></li></ol>
+		
+		</div>
+		
+		<h2 id="JavaScript中的传值与传址">JavaScript中的传值与传址</h2><ul>
+<li>赋值语句中<br>JavaScript中对基本类型的传递是传基本值,基本类型包括:<code>Boolean,String,Number,Undefined and Null</code>.<br><strong>注意:</strong>只有字面量(literal)的<code>Boolean,String,Number,Undefined(实际值:undefined) and Null(实际值:null)</code>才是,举个例子:  </li>
+</ul>
+<pre><code><span class="keyword">var</span> b = <span class="keyword">new</span> <span class="built_in">Boolean</span>(<span class="literal">false</span>);
+alert(<span class="keyword">typeof</span> b);<span class="comment">//"object"(不是基本类型)</span>
+<span class="keyword">var</span> s = <span class="keyword">new</span> <span class="built_in">String</span>(<span class="string">"hello"</span>);
+alert(<span class="keyword">typeof</span> s);<span class="comment">//"object"(不是基本类型)</span>
+</code></pre><p>对于复合类型的传递是传地址值,也就是引用.比如:  </p>
+<pre><code><span class="keyword">var</span> a = <span class="keyword">new</span> <span class="built_in">Object</span>();
+a.age = <span class="number">10</span>;
+<span class="keyword">var</span> b = a;
+b.age = <span class="number">18</span>;
+alert(a.age);<span class="comment">//"18"这里将a对象的地址传给b,b中修改属性就会导致a的变化</span>
+</code></pre><ul>
+<li><p>函数参数传递中<br>JavaScript中参数的传递全部是传基本值(包括复合类型,比如对象),这样在函数内所做的修改是不会对外部造成影响  </p>
+<pre><code><span class="comment">// 修改原始类型的参数值</span>
+<span class="keyword">var</span> p = <span class="number">2</span>; 
+
+<span class="function"><span class="keyword">function</span> <span class="title">f</span><span class="params">(p)</span><span class="comment">{
+    p = 3;
+}</span>
+
+<span class="title">f</span><span class="params">(p)</span>;</span>
+p <span class="comment">// 2</span>
+
+<span class="comment">// 修改复合类型的参数值</span>
+<span class="keyword">var</span> o = [<span class="number">1</span>,<span class="number">2</span>,<span class="number">3</span>];
+
+<span class="function"><span class="keyword">function</span> <span class="title">f</span><span class="params">(o)</span><span class="comment">{
+    o = [2,3,4];
+}</span>
+
+<span class="title">f</span><span class="params">(o)</span>;</span>
+o <span class="comment">// [1, 2, 3]</span>
+</code></pre><p><strong>注意:</strong>虽然参数本身是传值传递，但是对于复合类型的变量来说，属性值是传址传递（pass by reference），也就是说，属性值是通过地址读取的。所以在函数体内修改复合类型变量的属性值，会影响到函数外部。</p>
+<pre><code><span class="comment">// 修改对象的属性值</span>
+<span class="keyword">var</span> o = <span class="comment">{ p:1 }</span>;
+
+<span class="function"><span class="keyword">function</span> <span class="title">f</span><span class="params">(obj)</span><span class="comment">{
+    obj.p = 2;
+}</span>
+
+<span class="title">f</span><span class="params">(o)</span>;</span>
+o.p <span class="comment">// 2</span>
+
+<span class="comment">// 修改数组的属性值</span>
+<span class="keyword">var</span> a = [<span class="number">1</span>,<span class="number">2</span>,<span class="number">3</span>];
+
+<span class="function"><span class="keyword">function</span> <span class="title">f</span><span class="params">(a)</span><span class="comment">{
+    a[0]=4;
+}</span>
+
+<span class="title">f</span><span class="params">(a)</span>;</span>
+a <span class="comment">// [4,2,3]</span>
+</code></pre><p>根据上述复合对象的属性是传址的,可以利用这一点:若想让某个变量传地址,可以把它当成window对象的一个属性,示例如下:  </p>
+<pre><code><span class="keyword">var</span> p = <span class="number">1</span>;
+<span class="function"><span class="keyword">function</span> <span class="title">f</span><span class="params">(prop)</span><span class="comment">{
+    window[prop] = 2;
+}</span>
+<span class="title">f</span><span class="params">(<span class="string">'p'</span>)</span>;</span>
+alert(p);<span class="comment">//2</span>
+</code></pre></li>
+</ul>
+<h2 id="JavaScript创建对象的几种方法">JavaScript创建对象的几种方法</h2><ul>
+<li><p>直接对象初始化器<code>{}</code>来创建:  </p>
+<pre><code>var <span class="keyword">person</span> = {
+    name:<span class="string">"CC"</span>,
+    age:24
+    };
+</code></pre></li>
+<li><p>采用构造函数</p>
+<ul>
+<li><p>采用系统自带的<code>Object()</code>构造函数:</p>
+<pre><code>var <span class="keyword">person</span> = new Object();
+<span class="keyword">person</span>.name=<span class="string">"CC"</span>;
+<span class="keyword">person</span>.nage=24;
+</code></pre><p>  或初始化时带参数</p>
+<pre><code>var <span class="keyword">person</span> = new Object({
+name:<span class="string">"CC"</span>,
+age:24
+}); 
+</code></pre></li>
+<li><p>自定义构造函数:</p>
+<pre><code>function <span class="keyword">Person</span>(name,age){
+    this.name = name;
+    this.age = age
+}
+</code></pre></li>
+</ul>
+</li>
+</ul>
+<h2 id="JavaScript原型(prototype)对象">JavaScript原型(prototype)对象</h2><ul>
+<li><p>原型是用来跟踪一个类的变化的对象<strong>(待修正)</strong><br>举个例子:<br>如果创建了一个<code>Student</code>类:</p>
+<pre><code><span class="function"><span class="keyword">function</span> <span class="title">Student</span><span class="params">(name,age)</span></span>{
+    <span class="keyword">this</span>.name = name;
+    <span class="keyword">this</span>.age = age;
+}
+</code></pre><p>  假设通过此类实例化了一个对象:<code>xiaoming</code></p>
+<pre><code><span class="keyword">var</span> xiaoming = <span class="keyword">new</span> Student();
+</code></pre><p>  那么小明拥有的属性包括<code>name</code>和<code>age</code>,如果我想给<code>xiaoming</code>添加一个<code>carrer</code>属性,可以使用常用的方法,即:<code>xiaoming.carrer = &quot;student&quot;</code>.<br>  但是如果通过这个类实例化了很多个不同的<code>student</code>对象,并且都要给他们加上<code>carrer</code>属性,采用之前的方法就比较繁琐了.为了在不修改类的条件下,简单的得到这种效果,就需要利用到原型了.</p>
+<pre><code>Student.<span class="keyword">prototype</span>.carrer = <span class="string">'student'</span>;
+</code></pre><p>  这样在之后所有<code>student</code>创建的对象中,都存在一个<code>carrer</code>属性,并且值为<code>student</code>.</p>
+</li>
+<li><p>原型链在继承中的应用<br>  JS语言中的继承,是利用原型的方式进行实现了,因为继承关系可以表现为<code>父-子-孙...</code>的链接方式,相应的就有了原型链(<code>prototype chain</code>)的概念.</p>
+<pre><code><span class="comment">//定义一个Person类</span>
+<span class="function"><span class="keyword">function</span> <span class="title">Person</span>(<span class="params">name</span>)</span>{
+    <span class="keyword">this</span>.name = name;
+    <span class="keyword">this</span>.species= <span class="string">'human'</span>;
+}
+<span class="comment">//定义一个Student类</span>
+<span class="function"><span class="keyword">function</span> <span class="title">Student</span>(<span class="params">name</span>)</span>{
+    <span class="keyword">this</span>.name =name;
+    <span class="keyword">this</span>.carrer = <span class="string">"student"</span>;
+}
+<span class="comment">//定义一个CollegeStudent类</span>
+<span class="function"><span class="keyword">function</span> <span class="title">CollegeStudent</span>(<span class="params">name</span>)</span>{
+    <span class="keyword">this</span>.name = name;
+    <span class="keyword">this</span>.education = <span class="string">"college"</span>;
+}
+<span class="comment">//Student继承自Person</span>
+Student.prototype = <span class="keyword">new</span> Person();
+<span class="comment">//CollegeStudent继承自Student</span>
+CollegeStudent.prototype = <span class="keyword">new</span> Student();
+<span class="comment">//生成一个CollegeStudent对象:xiaoming</span>
+<span class="keyword">var</span> xiaoming = <span class="keyword">new</span> CollegeStudent(<span class="string">"xiaoming"</span>);
+<span class="keyword">var</span> xiaowang = <span class="keyword">new</span> CollegeStudent(<span class="string">"xiaowang"</span>);
+xiaowang.__proto__.species = <span class="string">"not human"</span>;
+<span class="built_in">console</span>.dir(xiaowang);
+<span class="comment">//输出小明的姓名</span>
+<span class="built_in">console</span>.log(xiaoming.name);<span class="comment">//xiaoming</span>
+<span class="comment">//输出小明的种族</span>
+<span class="built_in">console</span>.log(xiaoming.species);<span class="comment">//not human</span>
+<span class="comment">//输出小明的职业</span>
+<span class="built_in">console</span>.log(xiaoming.carrer);<span class="comment">//student</span>
+<span class="comment">//输出小明的教育程度</span>
+<span class="built_in">console</span>.log(xiaoming.education);<span class="comment">//college</span>
+</code></pre></li>
+</ul>
+  
+	</div>
+		<footer class="article-footer clearfix">
+<div class="article-catetags">
+
+
+</div>
+
+
+
+	<div class="article-share" id="share">
+	
+	  <div data-url="http://cfanlife.github.io/2014/06/30/JavaScript-lesson/" data-title="JavaScript基础学习笔记 | CC&#39;s BLOG" data-tsina="1743290140" class="share clearfix">
+	  </div>
+	
+	</div>
+
+
+</footer>
+
+   	       
+	</article>
+	
+<nav class="article-nav clearfix">
+ 
+ <div class="prev" >
+ <a href="/2014/07/03/Html-CSS-lesson/" title="HTML&amp;CSS学习笔记">
+  <strong>上一篇：</strong><br/>
+  <span>
+  HTML&amp;CSS学习笔记</span>
+</a>
+</div>
+
+
+<div class="next">
+<a href="/2014/06/23/how-to-build-blog-on-github/"  title="如何使用GitHub搭建自己的博客(待续...)">
+ <strong>下一篇：</strong><br/> 
+ <span>如何使用GitHub搭建自己的博客(待续...)
+</span>
+</a>
+</div>
+
+</nav>
+
+	
+
+</div>  
+      <div class="openaside"><a class="navbutton" href="#" title="显示侧边栏"></a></div>
+
+  <div id="toc" class="toc-aside">
+  <strong class="toc-title">文章目录</strong>
+ 
+ <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#JavaScript中的传值与传址"><span class="toc-number">1.</span> <span class="toc-text">JavaScript中的传值与传址</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#JavaScript创建对象的几种方法"><span class="toc-number">2.</span> <span class="toc-text">JavaScript创建对象的几种方法</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#JavaScript原型(prototype)对象"><span class="toc-number">3.</span> <span class="toc-text">JavaScript原型(prototype)对象</span></a></li></ol>
+ 
+  </div>
+
+<div id="asidepart">
+<div class="closeaside"><a class="closebutton" href="#" title="隐藏侧边栏"></a></div>
+<aside class="clearfix">
+
+  
+
+  
+
+  
+
+
+  <div class="weiboshow">
+  <p class="asidetitle">新浪微博</p>
+    <iframe width="100%" height="119" class="share_self"  frameborder="0" scrolling="no" src="http://widget.weibo.com/weiboshow/index.php?language=&width=0&height=119&fansRow=2&ptype=1&speed=0&skin=9&isTitle=1&noborder=1&isWeibo=0&isFans=0&uid=1743290140&verifier=7cf53c5c&dpc=1"></iframe>
+</div>
+
+
+  <div class="linkslist">
+  <p class="asidetitle">友情链接</p>
+    <ul>
+        
+          <li>
+            
+            	<a href="http://www.jianshu.com/users/d6e83ee69161/latest_articles" target="_blank" title="可木Changer">可木Changer</a>
+            
+          </li>
+        
+    </ul>
+</div>
+
+</aside>
+</div>
+    </div>
+    <footer><div id="footer" >
+	
+	
+	<div class="social-font" class="clearfix">
+		
+		<a href="http://weibo.com/1743290140" target="_blank" class="icon-weibo" title="微博"></a>
+		
+		
+		<a href="https://github.com/cfanlife" target="_blank" class="icon-github" title="github"></a>
+		
+		
+		
+		
+		
+		
+		
+		
+		
+	</div>
+			
+		
+
+		<p class="copyright">
+		Powered by <a href="http://hexo.io" target="_blank" title="hexo">hexo</a> and Theme Modified From <a href="https://github.com/wuchong/jacman" target="_blank" title="Jacman">Jacman</a> © 2015 
+		
+		<a href="/about" target="_blank" title="Du Keke">Du Keke</a>
+		
+		
+		</p>
+</div>
+</footer>
+    <script src="/js/jquery-2.0.3.min.js"></script>
+<script src="/js/jquery.imagesloaded.min.js"></script>
+<script src="/js/gallery.js"></script>
+
+<script type="text/javascript">
+$(document).ready(function(){ 
+  $('.navbar').click(function(){
+    $('header nav').toggleClass('shownav');
+  });
+  var myWidth = 0;
+  function getSize(){
+    if( typeof( window.innerWidth ) == 'number' ) {
+      myWidth = window.innerWidth;
+    } else if( document.documentElement && document.documentElement.clientWidth) {
+      myWidth = document.documentElement.clientWidth;
+    };
+  };
+  var m = $('#main'),
+      a = $('#asidepart'),
+      c = $('.closeaside'),
+      o = $('.openaside');
+  c.click(function(){
+    a.addClass('fadeOut').css('display', 'none');
+    o.css('display', 'block').addClass('fadeIn');
+    m.addClass('moveMain');
+  });
+  o.click(function(){
+    o.css('display', 'none').removeClass('beforeFadeIn');
+    a.css('display', 'block').removeClass('fadeOut').addClass('fadeIn');      
+    m.removeClass('moveMain');
+  });
+  $(window).scroll(function(){
+    o.css("top",Math.max(80,260-$(this).scrollTop()));
+  });
+  
+        getSize();
+        if (myWidth >= 1024) {
+          c.click();
+        }
+  
+  $(window).resize(function(){
+    getSize(); 
+    if (myWidth >= 1024) {
+      $('header nav').removeClass('shownav');
+    }else{
+      m.removeClass('moveMain');
+      a.css('display', 'block').removeClass('fadeOut');
+      o.css('display', 'none');
+      
+      $('#toc.toc-aside').css('display', 'none');
+        
+    }
+  });
+});
+</script>
+
+<script type="text/javascript">
+$(document).ready(function(){ 
+  var ai = $('.article-content>iframe'),
+      ae = $('.article-content>embed'),
+      t  = $('#toc'),
+      ta = $('#toc.toc-aside'),
+      o  = $('.openaside'),
+      c  = $('.closeaside');
+  if(ai.length>0){
+    ai.wrap('<div class="video-container" />');
+  };
+  if(ae.length>0){
+   ae.wrap('<div class="video-container" />');
+  };
+  c.click(function(){
+    ta.css('display', 'block').addClass('fadeIn');
+  });
+  o.click(function(){
+    ta.css('display', 'none');
+  });
+  $(window).scroll(function(){
+    ta.css("top",Math.max(140,320-$(this).scrollTop()));
+  });
+});
+</script>
+
+
+<script type="text/javascript">
+$(document).ready(function(){ 
+  var $this = $('.share'),
+      url = $this.attr('data-url'),
+      encodedUrl = encodeURIComponent(url),
+      title = $this.attr('data-title'),
+      tsina = $this.attr('data-tsina'),
+      description = $this.attr('description');
+  var html = [
+  '<a href="#" class="overlay" id="qrcode"></a>',
+  '<div class="qrcode clearfix"><span>扫描二维码分享到微信朋友圈</span><a class="qrclose" href="#nothing"></a><strong>Loading...Please wait</strong><img id="qrcode-pic" data-src="http://s.jiathis.com/qrcode.php?url=' + encodedUrl + '"/></div>',
+  '<a href="https://www.facebook.com/sharer.php?u=' + encodedUrl + '" class="article-share-facebook" target="_blank" title="Facebook"></a>',
+  '<a href="https://twitter.com/intent/tweet?url=' + encodedUrl + '" class="article-share-twitter" target="_blank" title="Twitter"></a>',
+  '<a href="#qrcode" class="article-share-qrcode" title="微信"></a>',
+  '<a href="http://widget.renren.com/dialog/share?resourceUrl=' + encodedUrl + '&srcUrl=' + encodedUrl + '&title=' + title +'" class="article-share-renren" target="_blank" title="人人"></a>',
+  '<a href="http://service.weibo.com/share/share.php?title='+title+'&url='+encodedUrl +'&ralateUid='+ tsina +'&searchPic=true&style=number' +'" class="article-share-weibo" target="_blank" title="微博"></a>',
+  '<span title="Share to"></span>'
+  ].join('');
+  $this.append(html);
+  $('.article-share-qrcode').click(function(){
+    var imgSrc = $('#qrcode-pic').attr('data-src');
+    $('#qrcode-pic').attr('src', imgSrc);
+    $('#qrcode-pic').load(function(){
+        $('.qrcode strong').text(' ');
+    });
+  });
+});     
+</script>
+
+
+
+
+
+
+
+
+
+<link rel="stylesheet" href="/fancybox/jquery.fancybox.css" media="screen" type="text/css">
+<script src="/fancybox/jquery.fancybox.pack.js"></script>
+<script type="text/javascript">
+$(document).ready(function(){ 
+  $('.article-content').each(function(i){
+    $(this).find('img').each(function(){
+      if ($(this).parent().hasClass('fancybox')) return;
+      var alt = this.alt;
+      if (alt) $(this).after('<span class="caption">' + alt + '</span>');
+      $(this).wrap('<a href="' + this.src + '" title="' + alt + '" class="fancybox"></a>');
+    });
+    $(this).find('.fancybox').each(function(){
+      $(this).attr('rel', 'article' + i);
+    });
+  });
+  if($.fancybox){
+    $('.fancybox').fancybox();
+  }
+}); 
+</script>
+
+
+
+<!-- Analytics Begin -->
+
+
+
+
+
+<!-- Analytics End -->
+
+<!-- Totop Begin -->
+
+	<div id="totop">
+	<a title="返回顶部"><img src="/img/scrollup.png"/></a>
+	</div>
+	<script src="/js/totop.js"></script>
+
+<!-- Totop End -->
+
+<!-- MathJax Begin -->
+<!-- mathjax config similar to math.stackexchange -->
+
+
+<!-- MathJax End -->
+
+<!-- Tiny_search Begin -->
+
+<!-- Tiny_search End -->
+
+  </body>
+</html>
