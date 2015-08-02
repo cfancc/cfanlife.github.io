@@ -23,7 +23,7 @@ var b = n">
 赋值语句中JavaScript中对基本类型的传递是传基本值,基本类型包括:Boolean,String,Number,Undefined and Null.注意:只有字面量(literal)的Boolean,String,Number,Undefined(实际值:undefined) and Null(实际值:null)才是,举个例子:  
 
 var b = n">
-<meta property="og:updated_time" content="2015-03-06T06:11:08.886Z">
+<meta property="og:updated_time" content="2015-08-02T06:22:03.458Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="JavaScript基础学习笔记">
 <meta name="twitter:description" content="JavaScript中的传值与传址
@@ -125,23 +125,23 @@ alert(a.age);<span class="comment">//"18"这里将a对象的地址传给b,b中�
 </code></pre><ul>
 <li><p>函数参数传递中<br>JavaScript中参数的传递全部是传基本值(包括复合类型,比如对象),这样在函数内所做的修改是不会对外部造成影响  </p>
 <pre><code><span class="comment">// 修改原始类型的参数值</span>
-<span class="keyword">var</span> p = <span class="number">2</span>; 
+var p = <span class="number">2</span>; 
 
-<span class="function"><span class="keyword">function</span> <span class="title">f</span><span class="params">(p)</span><span class="comment">{
-    p = 3;
-}</span>
+<span class="function">function <span class="title">f</span><span class="params">(p)</span></span>{
+    p = <span class="number">3</span>;
+}
 
-<span class="title">f</span><span class="params">(p)</span>;</span>
+f(p);
 p <span class="comment">// 2</span>
 
 <span class="comment">// 修改复合类型的参数值</span>
-<span class="keyword">var</span> o = [<span class="number">1</span>,<span class="number">2</span>,<span class="number">3</span>];
+var o = [<span class="number">1</span>,<span class="number">2</span>,<span class="number">3</span>];
 
-<span class="function"><span class="keyword">function</span> <span class="title">f</span><span class="params">(o)</span><span class="comment">{
-    o = [2,3,4];
-}</span>
+<span class="function">function <span class="title">f</span><span class="params">(o)</span></span>{
+    o = [<span class="number">2</span>,<span class="number">3</span>,<span class="number">4</span>];
+}
 
-<span class="title">f</span><span class="params">(o)</span>;</span>
+f(o);
 o <span class="comment">// [1, 2, 3]</span>
 </code></pre><p><strong>注意:</strong>虽然参数本身是传值传递，但是对于复合类型的变量来说，属性值是传址传递（pass by reference），也就是说，属性值是通过地址读取的。所以在函数体内修改复合类型变量的属性值，会影响到函数外部。</p>
 <pre><code><span class="comment">// 修改对象的属性值</span>

@@ -4,32 +4,29 @@
 <head>
   <meta charset="UTF-8">
   
-    <title>CSS实现纯色箭头 | CC&#39;s BLOG</title>
+    <title>CSS Pixel与绝对像素 | CC&#39;s BLOG</title>
     <meta name="viewport" content="width=device-width, initial-scale=1,user-scalable=no">
     
     <meta name="author" content="Du Keke">
     
 
     
-    <meta name="description" content="因为项目需要画一些流程图,流程块很容易实现,只需要对一个div操作一下就好,但是流程箭头却不容易实现,从网上搜寻了一部分资料,用CSS可以完美实现.最终效果如下:
-
-
-HTML代码123456   &amp;lt;div&amp;gt;	&amp;lt;!--创建箭头的柄--&amp;gt;	&amp;lt;div class=&quot;shaft&quot;&amp;gt;&amp;lt;/div&amp;gt;	&amp;lt;!--创建箭头的头--&amp;gt;	&amp;lt;div cla">
+    <meta name="description" content="之前在电视的webview上投放广告页面时，遇到了个问题，就是视窗大小和文档大小不一致。最后发现原来有CSS Pixel这个概念，搜集了一些资料，希望能把这个问题捋捋清楚。
+首先提出一个大家常常会忽略的问题：
+如今主流手机屏幕的像素点数已经远远超过了桌面显示器的像素数量，5.5英寸1920x1080P的手机与一个21英寸1920x1080P的显示器相比，同等面积下，手机的像素点更密集，可想而知，在">
 <meta property="og:type" content="article">
-<meta property="og:title" content="CSS实现纯色箭头">
-<meta property="og:url" content="http://cfanlife.github.io/2014/11/03/Pure-CSS-Arrow/index.html">
+<meta property="og:title" content="CSS Pixel与绝对像素">
+<meta property="og:url" content="http://cfanlife.github.io/2015/07/18/CSS-Pixel/index.html">
 <meta property="og:site_name" content="CC's BLOG">
-<meta property="og:description" content="因为项目需要画一些流程图,流程块很容易实现,只需要对一个div操作一下就好,但是流程箭头却不容易实现,从网上搜寻了一部分资料,用CSS可以完美实现.最终效果如下:
-
-
-HTML代码123456   &amp;lt;div&amp;gt;	&amp;lt;!--创建箭头的柄--&amp;gt;	&amp;lt;div class=&quot;shaft&quot;&amp;gt;&amp;lt;/div&amp;gt;	&amp;lt;!--创建箭头的头--&amp;gt;	&amp;lt;div cla">
-<meta property="og:updated_time" content="2015-08-02T06:24:37.510Z">
+<meta property="og:description" content="之前在电视的webview上投放广告页面时，遇到了个问题，就是视窗大小和文档大小不一致。最后发现原来有CSS Pixel这个概念，搜集了一些资料，希望能把这个问题捋捋清楚。
+首先提出一个大家常常会忽略的问题：
+如今主流手机屏幕的像素点数已经远远超过了桌面显示器的像素数量，5.5英寸1920x1080P的手机与一个21英寸1920x1080P的显示器相比，同等面积下，手机的像素点更密集，可想而知，在">
+<meta property="og:updated_time" content="2015-08-02T06:17:17.208Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="CSS实现纯色箭头">
-<meta name="twitter:description" content="因为项目需要画一些流程图,流程块很容易实现,只需要对一个div操作一下就好,但是流程箭头却不容易实现,从网上搜寻了一部分资料,用CSS可以完美实现.最终效果如下:
-
-
-HTML代码123456   &amp;lt;div&amp;gt;	&amp;lt;!--创建箭头的柄--&amp;gt;	&amp;lt;div class=&quot;shaft&quot;&amp;gt;&amp;lt;/div&amp;gt;	&amp;lt;!--创建箭头的头--&amp;gt;	&amp;lt;div cla">
+<meta name="twitter:title" content="CSS Pixel与绝对像素">
+<meta name="twitter:description" content="之前在电视的webview上投放广告页面时，遇到了个问题，就是视窗大小和文档大小不一致。最后发现原来有CSS Pixel这个概念，搜集了一些资料，希望能把这个问题捋捋清楚。
+首先提出一个大家常常会忽略的问题：
+如今主流手机屏幕的像素点数已经远远超过了桌面显示器的像素数量，5.5英寸1920x1080P的手机与一个21英寸1920x1080P的显示器相比，同等面积下，手机的像素点更密集，可想而知，在">
 
     
     <link rel="alternative" href="/atom.xml" title="CC&#39;s BLOG" type="application/atom+xml">
@@ -89,14 +86,14 @@ HTML代码123456   &amp;lt;div&amp;gt;	&amp;lt;!--创建箭头的柄--&amp;gt;	&
 		<header class="article-info clearfix">
   <h1 itemprop="name">
     
-      <a href="/2014/11/03/Pure-CSS-Arrow/" title="CSS实现纯色箭头" itemprop="url">CSS实现纯色箭头</a>
+      <a href="/2015/07/18/CSS-Pixel/" title="CSS Pixel与绝对像素" itemprop="url">CSS Pixel与绝对像素</a>
   </h1>
   <p class="article-author">By
        
 		<a href="/about" title="Du Keke" target="_blank" itemprop="author">Du Keke</a>
 		
   <p class="article-time">
-    <time datetime="2014-11-02T16:00:00.000Z" itemprop="datePublished"> 发表于 2014-11-03</time>
+    <time datetime="2015-07-17T16:00:00.000Z" itemprop="datePublished"> 发表于 2015-07-18</time>
     
   </p>
 </header>
@@ -105,16 +102,31 @@ HTML代码123456   &amp;lt;div&amp;gt;	&amp;lt;!--创建箭头的柄--&amp;gt;	&
 		<div id="toc" class="toc-article">
 			<strong class="toc-title">文章目录</strong>
 		
-			<ol class="toc"><li class="toc-item toc-level-3"><a class="toc-link" href="#HTML代码"><span class="toc-number">1.</span> <span class="toc-text">HTML代码</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#CSS代码"><span class="toc-number">2.</span> <span class="toc-text">CSS代码</span></a></li></ol>
+			<ol class="toc"><li class="toc-item toc-level-3"><a class="toc-link" href="#逻辑分辨率与物理分辨率"><span class="toc-number">1.</span> <span class="toc-text">逻辑分辨率与物理分辨率</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#移动端开发方案"><span class="toc-number">2.</span> <span class="toc-text">移动端开发方案</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#总结"><span class="toc-number">3.</span> <span class="toc-text">总结</span></a></li></ol>
 		
 		</div>
 		
-		<p>因为项目需要画一些流程图,流程块很容易实现,只需要对一个div操作一下就好,但是流程箭头却不容易实现,从网上搜寻了一部分资料,用CSS可以完美实现.<br>最终效果如下:</p>
-<div><div id="lcshaft" style="margin-left: auto;margin-right: auto;width:2px;height:30px;background-color:black;"></div><div id="lcarrowhead" style="margin-left: auto;margin-right: auto;width: 0;height: 0;border-left: 8px solid transparent;border-right: 8px solid transparent;border-top: 12px solid black;"></div></div>
-
-<h3 id="HTML代码">HTML代码</h3><figure class="highlight xml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">   <span class="tag">&lt;<span class="title">div</span>&gt;</span></span><br><span class="line">	<span class="comment">&lt;!--创建箭头的柄--&gt;</span></span><br><span class="line">	<span class="tag">&lt;<span class="title">div</span> <span class="attribute">class</span>=<span class="value">"shaft"</span>&gt;</span><span class="tag">&lt;/<span class="title">div</span>&gt;</span></span><br><span class="line">	<span class="comment">&lt;!--创建箭头的头--&gt;</span></span><br><span class="line">	<span class="tag">&lt;<span class="title">div</span> <span class="attribute">class</span>=<span class="value">"arrowhead"</span>&gt;</span><span class="tag">&lt;/<span class="title">div</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="title">div</span>&gt;</span></span><br></pre></td></tr></table></figure>
-<h3 id="CSS代码">CSS代码</h3><figure class="highlight css"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br></pre></td><td class="code"><pre><span class="line">  <span class="class">.shaft</span><span class="rules">&#123;<span class="comment">/*画柄*/</span></span><br><span class="line"><span class="rule"><span class="attribute">margin-left</span>:<span class="value"> auto</span></span>;</span><br><span class="line"><span class="rule"><span class="attribute">margin-right</span>:<span class="value"> auto</span></span>;<span class="comment">/*这两项auto是自动居中*/</span></span><br><span class="line"><span class="rule"><span class="attribute">width</span>:<span class="value"><span class="number">2px</span></span></span>;</span><br><span class="line"><span class="rule"><span class="attribute">height</span>:<span class="value"><span class="number">30px</span></span></span>;</span><br><span class="line"><span class="rule"><span class="attribute">background-color</span>:<span class="value">black</span></span>;<span class="comment">/*填充柄为黑色*/</span></span><br><span class="line">  &#125;</span></span><br><span class="line"></span><br><span class="line">  <span class="class">.arrowhead</span><span class="rules">&#123;<span class="comment">/*画箭头*/</span></span><br><span class="line"><span class="rule"><span class="attribute">margin-left</span>:<span class="value"> auto</span></span>;</span><br><span class="line"><span class="rule"><span class="attribute">margin-right</span>:<span class="value"> auto</span></span>;<span class="comment">/*这两项auto是自动居中*/</span></span><br><span class="line"><span class="rule"><span class="attribute">width</span>:<span class="value"> <span class="number">0</span></span></span>;</span><br><span class="line"><span class="rule"><span class="attribute">height</span>:<span class="value"> <span class="number">0</span></span></span>;<span class="comment">/*将content设为0宽0高,可以创造出四个三角形环绕的div*/</span></span><br><span class="line"><span class="rule"><span class="attribute">border-left</span>:<span class="value"> <span class="number">8px</span> solid 	transparent</span></span>;<span class="comment">/*将border左侧(三角形)隐藏*/</span></span><br><span class="line"><span class="rule"><span class="attribute">border-right</span>:<span class="value"> <span class="number">8px</span> solid transparent</span></span>;<span class="comment">/*将border右侧(三角形)隐藏*/</span></span><br><span class="line"><span class="rule"><span class="attribute">border-top</span>:<span class="value"> <span class="number">12px</span> solid black</span></span>;<span class="comment">/*将border顶侧(三角形)填充黑色*/</span></span><br><span class="line">  &#125;</span></span><br></pre></td></tr></table></figure>
-<p>这是通过两个div才实现的，一个div也可以实现，是利用伪元素的方式，其实就是第二个CSS样式变成.shaft:after即可。</p>
+		<p>之前在电视的webview上投放广告页面时，遇到了个问题，就是视窗大小和文档大小不一致。最后发现原来有CSS Pixel这个概念，搜集了一些资料，希望能把这个问题捋捋清楚。</p>
+<p>首先提出一个大家常常会忽略的问题：</p>
+<p>如今主流手机屏幕的像素点数已经远远超过了桌面显示器的像素数量，5.5英寸1920x1080P的手机与一个21英寸1920x1080P的显示器相比，同等面积下，手机的像素点更密集，可想而知，在手机屏幕上一个像素点是非常小的。</p>
+<p>那么在CSS中设置<code>font-size</code>:12px，如果“手机屏幕物理像素：CSS像素”=“1：1”，那么手机上展示出来的字体你可能需要放大镜才能看清，但为什么如今的手机屏幕依然能清晰的显示？</p>
+<p>答案就是：CSS中的<code>px</code>与屏幕上的物理像素<code>px</code>不是等同的。</p>
+<h3 id="逻辑分辨率与物理分辨率">逻辑分辨率与物理分辨率</h3><p>由于以上物理像素尺寸差异导致的问题，我们不可能把电子文件中的像素与物理像素做1：1的适配。必须在小的设备上适当放大，也就是说用多个物理像素来显示一个电子像素，从而保证阅读质量。<br>所以<code>devicePixelRatio</code>应运而生：<code>逻辑分辨率 = 物理分辨率 / devicePixelRatio</code></p>
+<blockquote>
+<p>普通密度桌面显示屏的devicePixelRatio=1<br>高密度桌面显示屏(Mac Retina)的devicePixelRatio=2<br>主流手机显示屏的devicePixelRatio=2或3</p>
+</blockquote>
+<p>因为大部分桌面显示器的<code>devicePixelRatio</code>为1，所以在PC端我们感受不出来CSS Pixel 与 物理像素的差别。</p>
+<p>举个栗子来说，一张100x100的图片，通过CSS设置它<code>width:100px;height:100px</code>。在电脑上打开，没有什么问题，但是在手机上打开，屏幕按照逻辑分辨率来渲染，假设手机的<code>devicePixelRatio=3</code>，那么就相当于拿3个物理像素来描绘1个电子像素。这等于拿一个三倍的放大镜去看你的图片，你的图片可能因此变得模糊，因为细节不够。所以一般明智的做法是把图片换成300x300的，CSS宽高不变，这样在手机上展示时，CSS宽高换算成物理像素是300x300，你的图片也是300x300，就不会变糊了。</p>
+<h3 id="移动端开发方案">移动端开发方案</h3><p>打开一个页面，移动端浏览器会自动寻找<code>&lt;meta name=&#39;viewport&#39;&gt;</code>,如果指定了视窗口的<code>width</code>，就会把页面放到指定<code>width</code>的<code>viewport</code>里面。如果没有指定，则默认值有的是980，具体根据浏览器来定的。（我遇到的就是这个问题，通过添加下面的代码解决）</p>
+<blockquote>
+<p><strong><meta name="”viewport”" content="”width=device-width," initial-scale="1," maximum-scale="1″"></strong></p>
+</blockquote>
+<p><code>width</code>：控制 <code>viewport</code> 的大小，可以指定的一个值，如果 600，或者特殊的值，如 <code>device-width</code> 为设备的宽度（单位为缩放为 100% 时的 CSS 的像素）。<br><code>height</code>：和 <code>width</code> 相对应，指定高度。<br><code>initial-scale</code>：初始缩放比例，也即是当页面第一次 load 的时候缩放比例。<br><code>maximum-scale</code>：允许用户缩放到的最大比例。<br><code>minimum-scale</code>：允许用户缩放到的最小比例。<br><code>user-scalable</code>：用户是否可以手动缩放</p>
+<h3 id="总结">总结</h3><p>当时因为是在电视上投放页面，并未当成手机移动端来考虑，出现这个问题一直认为是对方的问题，结果发现是页面缺少viewport meta标签，反思良多。<br>自己的对于移动端Web开发了解的还不是很多，这篇文章一是记录问题，二是能简单梳理下CSS像素的概念。如果今后有机会接触更多的移动开发的话，会另起炉灶写一篇更为详细的关于这方面的文章，既是学习，也是记录。</p>
+<p>本文部分文字借鉴自知乎回答、网络BLOG：</p>
+<blockquote>
+<p><a href="http://www.zhihu.com/question/28082877" target="_blank" rel="external">像素和CSS媒体查询?</a><br><a href="http://www.cnblogs.com/pigtail/archive/2013/03/15/2961631.html" target="_blank" rel="external"><a href="http://www.cnblogs.com/pigtail/archive/2013/03/15/2961631.html" target="_blank" rel="external">HTML meta viewport属性说明(mark)</a></a></p>
+</blockquote>
   
 	</div>
 		<footer class="article-footer clearfix">
@@ -127,7 +139,7 @@ HTML代码123456   &amp;lt;div&amp;gt;	&amp;lt;!--创建箭头的柄--&amp;gt;	&
 
 	<div class="article-share" id="share">
 	
-	  <div data-url="http://cfanlife.github.io/2014/11/03/Pure-CSS-Arrow/" data-title="CSS实现纯色箭头 | CC&#39;s BLOG" data-tsina="1743290140" class="share clearfix">
+	  <div data-url="http://cfanlife.github.io/2015/07/18/CSS-Pixel/" data-title="CSS Pixel与绝对像素 | CC&#39;s BLOG" data-tsina="1743290140" class="share clearfix">
 	  </div>
 	
 	</div>
@@ -140,19 +152,11 @@ HTML代码123456   &amp;lt;div&amp;gt;	&amp;lt;!--创建箭头的柄--&amp;gt;	&
 	
 <nav class="article-nav clearfix">
  
- <div class="prev" >
- <a href="/2014/11/26/Environment-Variable-Needs-for-Java-and-Tomcat/" title="JDK及Tomcat环境变量配置详解">
-  <strong>上一篇：</strong><br/>
-  <span>
-  JDK及Tomcat环境变量配置详解</span>
-</a>
-</div>
-
 
 <div class="next">
-<a href="/2014/07/20/JavaScript-protype-and-constructor/"  title="JavaScript的原型机制">
+<a href="/2014/12/27/Carriage-Return-And-Line-Feed/"  title="回车与换行的由来">
  <strong>下一篇：</strong><br/> 
- <span>JavaScript的原型机制
+ <span>回车与换行的由来
 </span>
 </a>
 </div>
@@ -167,7 +171,7 @@ HTML代码123456   &amp;lt;div&amp;gt;	&amp;lt;!--创建箭头的柄--&amp;gt;	&
   <div id="toc" class="toc-aside">
   <strong class="toc-title">文章目录</strong>
  
- <ol class="toc"><li class="toc-item toc-level-3"><a class="toc-link" href="#HTML代码"><span class="toc-number">1.</span> <span class="toc-text">HTML代码</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#CSS代码"><span class="toc-number">2.</span> <span class="toc-text">CSS代码</span></a></li></ol>
+ <ol class="toc"><li class="toc-item toc-level-3"><a class="toc-link" href="#逻辑分辨率与物理分辨率"><span class="toc-number">1.</span> <span class="toc-text">逻辑分辨率与物理分辨率</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#移动端开发方案"><span class="toc-number">2.</span> <span class="toc-text">移动端开发方案</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#总结"><span class="toc-number">3.</span> <span class="toc-text">总结</span></a></li></ol>
  
   </div>
 

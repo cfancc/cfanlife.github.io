@@ -11,16 +11,16 @@
     
 
     
-    <meta name="description" content="相信很多刚接触JavaWeb开发的人最先接触的就是JDK和Tomcat的安装和配置，这其中最重要的一项就是这俩货的环境变量的配置。关于这俩货的环境变量的配置，大抵网络上都是差不多的说辞，先配这个再配那个，完全是你抄我我抄你。没几个能说个明白为什么配置这个，为什么这么配，最后怒查各种官方文档和说明，终于整了个秃子头上的虱子— 一清二楚。以下说明在Win7 64位平台下，以JDK 1.6，Tomcat">
+    <meta name="description" content="相信很多刚接触JavaWeb开发的人最先接触的就是JDK和Tomcat的安装和配置，这其中最重要的一项就是这俩货的环境变量的配置。关于这俩货的环境变量的配置，大抵网络上都是差不多的说辞，先配这个再配那个，完全是你抄我我抄你。没几个能说个明白为什么配置这个，为什么这么配，最后怒查各种官方文档和说明，终于整了个秃子头上的虱子– 一清二楚。以下说明在Win7 64位平台下，以JDK 1.6，Tomcat">
 <meta property="og:type" content="article">
 <meta property="og:title" content="JDK及Tomcat环境变量配置详解">
 <meta property="og:url" content="http://cfanlife.github.io/2014/11/26/Environment-Variable-Needs-for-Java-and-Tomcat/index.html">
 <meta property="og:site_name" content="CC's BLOG">
-<meta property="og:description" content="相信很多刚接触JavaWeb开发的人最先接触的就是JDK和Tomcat的安装和配置，这其中最重要的一项就是这俩货的环境变量的配置。关于这俩货的环境变量的配置，大抵网络上都是差不多的说辞，先配这个再配那个，完全是你抄我我抄你。没几个能说个明白为什么配置这个，为什么这么配，最后怒查各种官方文档和说明，终于整了个秃子头上的虱子— 一清二楚。以下说明在Win7 64位平台下，以JDK 1.6，Tomcat">
-<meta property="og:updated_time" content="2015-07-03T00:40:33.847Z">
+<meta property="og:description" content="相信很多刚接触JavaWeb开发的人最先接触的就是JDK和Tomcat的安装和配置，这其中最重要的一项就是这俩货的环境变量的配置。关于这俩货的环境变量的配置，大抵网络上都是差不多的说辞，先配这个再配那个，完全是你抄我我抄你。没几个能说个明白为什么配置这个，为什么这么配，最后怒查各种官方文档和说明，终于整了个秃子头上的虱子– 一清二楚。以下说明在Win7 64位平台下，以JDK 1.6，Tomcat">
+<meta property="og:updated_time" content="2015-08-02T06:20:38.863Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="JDK及Tomcat环境变量配置详解">
-<meta name="twitter:description" content="相信很多刚接触JavaWeb开发的人最先接触的就是JDK和Tomcat的安装和配置，这其中最重要的一项就是这俩货的环境变量的配置。关于这俩货的环境变量的配置，大抵网络上都是差不多的说辞，先配这个再配那个，完全是你抄我我抄你。没几个能说个明白为什么配置这个，为什么这么配，最后怒查各种官方文档和说明，终于整了个秃子头上的虱子— 一清二楚。以下说明在Win7 64位平台下，以JDK 1.6，Tomcat">
+<meta name="twitter:description" content="相信很多刚接触JavaWeb开发的人最先接触的就是JDK和Tomcat的安装和配置，这其中最重要的一项就是这俩货的环境变量的配置。关于这俩货的环境变量的配置，大抵网络上都是差不多的说辞，先配这个再配那个，完全是你抄我我抄你。没几个能说个明白为什么配置这个，为什么这么配，最后怒查各种官方文档和说明，终于整了个秃子头上的虱子– 一清二楚。以下说明在Win7 64位平台下，以JDK 1.6，Tomcat">
 
     
     <link rel="alternative" href="/atom.xml" title="CC&#39;s BLOG" type="application/atom+xml">
@@ -100,7 +100,7 @@
 		
 		</div>
 		
-		<p>相信很多刚接触JavaWeb开发的人最先接触的就是JDK和Tomcat的安装和配置，这其中最重要的一项就是这俩货的环境变量的配置。关于这俩货的环境变量的配置，大抵网络上都是差不多的说辞，先配这个再配那个，完全是你抄我我抄你。没几个能说个明白为什么配置这个，为什么这么配，最后怒查各种官方文档和说明，终于整了个秃子头上的虱子— 一清二楚。以下说明在Win7 64位平台下，以JDK 1.6，Tomcat 6.0为例。</p>
+		<p>相信很多刚接触JavaWeb开发的人最先接触的就是JDK和Tomcat的安装和配置，这其中最重要的一项就是这俩货的环境变量的配置。关于这俩货的环境变量的配置，大抵网络上都是差不多的说辞，先配这个再配那个，完全是你抄我我抄你。没几个能说个明白为什么配置这个，为什么这么配，最后怒查各种官方文档和说明，终于整了个秃子头上的虱子– 一清二楚。以下说明在Win7 64位平台下，以JDK 1.6，Tomcat 6.0为例。</p>
 <h2 id="JDK环境变量配置">JDK环境变量配置</h2><ol>
 <li><h3 id="Path（可选配）：">Path（可选配）：</h3><p> 还是扒一下官方JDK安装文档吧：  </p>
 <blockquote>
@@ -119,9 +119,9 @@ It's useful <span class="keyword">to</span> <span class="keyword">set</span> <sp
 <li><h3 id="CLASSPATH（可选配）">CLASSPATH（可选配）</h3><p> 官方JDK安装中并没有提及这一项的配置，也就是说一般是没必要配置的。这项的配置是用来供JAVA虚拟机寻找类文件提供服务的，默认是当前目录下，一般无需改动。如果真要配的话，请确定你明确这个变量的意义。</p>
 <p> <strong><em>配置这项的作用？</em></strong></p>
 <blockquote>
-<p>The class path tells JDK tools and applications where to find third-party and user-defined classes — that is, classes that are not Java extensions or part of the Java platform. The class path needs to find any classes you’ve compiled with the javac compiler — its default is the current directory to conveniently enable those classes to be found.</p>
+<p>The class path tells JDK tools and applications where to find third-party and user-defined classes – that is, classes that are not Java extensions or part of the Java platform. The class path needs to find any classes you’ve compiled with the javac compiler – its default is the current directory to conveniently enable those classes to be found.</p>
 </blockquote>
-<p> 翻译：classpath能告诉JDK工具和执行文件需要到哪里去找第三方和用户自定义的类文件。这些类文件并不是JAVA自身的扩展或者是JAVA平台的一部分。classpath类路径需要能找到用户用javac编译器编译完的任何的类文件—默认情况下是指向当前目录的，能方便找到那些需要用到的类</p>
+<p> 翻译：classpath能告诉JDK工具和执行文件需要到哪里去找第三方和用户自定义的类文件。这些类文件并不是JAVA自身的扩展或者是JAVA平台的一部分。classpath类路径需要能找到用户用javac编译器编译完的任何的类文件–默认情况下是指向当前目录的，能方便找到那些需要用到的类</p>
 <p> <strong><em>如何配置?</em></strong></p>
 <p> 官方文档：<a href="http://docs.oracle.com/javase/6/docs/technotes/tools/windows/classpath.html" target="_blank" rel="external">http://docs.oracle.com/javase/6/docs/technotes/tools/windows/classpath.html</a><br> 如果你需要用到CLASSPATH变量，那么记得要将“.”或者“\”(即当前根目录)添加进去，因为自定义的路径会覆盖掉默认的配置。多个路径之间用“;”（英文分号）隔开（试验了，确实如此）。至于网上说的一些要带rt.jar ,dt.jar ,tools.jar文件的路径的说法，rt.jar存在于jre\lib下，tools.jar和dt.jar是存在于jdk安装目录下的lib文件目录下。下面就来一一辟谣。  </p>
 <ul>

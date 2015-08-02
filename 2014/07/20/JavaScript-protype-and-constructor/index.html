@@ -22,7 +22,7 @@ function">
 什么是原型首先明确一点,JS中除了字面(literal)基本类型外,其它都可以看作对象.JS中一个对象的产生,不是凭空出现,自然而然的要依赖于相应的构造函数(constructor).构造函数是什么样的呢?比如说:  
 function">
 <meta property="og:image" content="http://cfanlife.github.io/img/constructorAndprototype.jpg">
-<meta property="og:updated_time" content="2015-06-30T14:51:59.086Z">
+<meta property="og:updated_time" content="2015-08-02T06:21:12.800Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="JavaScript的原型机制">
 <meta name="twitter:description" content="Javascript中的继承不同于其它语言,想搞清楚它的继承,最主要需要理解的便是原型模式,下面是基于网上的一些资料加上我的个人理解,希望能将原型模式表述清楚.
@@ -120,7 +120,7 @@ function">
 </li>
 <li><p><code>prototype</code>与<code>constructor</code>  </p>
 <p>  从上面我们知道了,一个对象生成后,会有一个属性指向它的原型(<code>prototype</code>)对象,那这个原型对象具体是干什么的呢?这时候就得先详细说一下构造函数(<code>constructor</code>)了,在前面我们定义了一个<code>Person</code>构造函数,从JS的角度来看,函数也是对象的一种,所以说<code>Person</code>构造函数也是一种特殊的对象,所以它也拥有自己的一些属性来说明自己.  </p>
-<p>  <code>prototype</code>就是构造函数一个很重要的属性,这个属性指向了一个原型对象,<em>该对象与构造函数同名(待验证),</em>主要表达了本构造函数(<code>Person</code>)生成的对象的最小化模版,并且原型(<code>prototype</code>)对象中所有已定义的静态属性和方法都可以被构造函数生成的对象所使用的,采用引用的方式(就是说,只要你用了本构造函数(<code>Person</code>) <code>new</code>出来一个对象,那么这个对象中必定会存在原型的属性和方法—假如不重写的话,可以通过<code>.</code>直接调用)</p>
+<p>  <code>prototype</code>就是构造函数一个很重要的属性,这个属性指向了一个原型对象,<em>该对象与构造函数同名(待验证),</em>主要表达了本构造函数(<code>Person</code>)生成的对象的最小化模版,并且原型(<code>prototype</code>)对象中所有已定义的静态属性和方法都可以被构造函数生成的对象所使用的,采用引用的方式(就是说,只要你用了本构造函数(<code>Person</code>) <code>new</code>出来一个对象,那么这个对象中必定会存在原型的属性和方法–假如不重写的话,可以通过<code>.</code>直接调用)</p>
 <p>  同样的,原型对象中也存在着一个<code>constructor</code>属性,指向了它的构造函数,总体来说,它们之间是互相引用的关系,如下图所示:<br>  <img src="/img/constructorAndprototype.jpg" alt="构造函数和原型对象的引用关系"></p>
 </li>
 </ul>
