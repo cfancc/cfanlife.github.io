@@ -1,0 +1,410 @@
+
+ <!DOCTYPE HTML>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+  
+    <title>不要用return false阻止event的默认行为 | CC&#39;s BLOG</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1,user-scalable=no">
+    
+    <meta name="author" content="Du Keke">
+    
+
+    
+    <meta name="description" content="当我们点击一个a标签时，如果这个标签的href指向了另一个地址，那么浏览器会默认跳转到此地址。在页面中，有时我们需要触发点击事件，但是又不想触发默认行为，就需要阻止event的默认行为了。
+常规做法众所周知，IE早期版本的event对象与DOM标准中的event对象并不相同，所以一般的兼容性写法是这样的：12345if (event.preventDefault) &amp;#123;    event.">
+<meta property="og:type" content="article">
+<meta property="og:title" content="不要用return false阻止event的默认行为">
+<meta property="og:url" content="http://cfanlife.github.io/2015/08/23/dont-use-return-false-to-prevent-event/index.html">
+<meta property="og:site_name" content="CC's BLOG">
+<meta property="og:description" content="当我们点击一个a标签时，如果这个标签的href指向了另一个地址，那么浏览器会默认跳转到此地址。在页面中，有时我们需要触发点击事件，但是又不想触发默认行为，就需要阻止event的默认行为了。
+常规做法众所周知，IE早期版本的event对象与DOM标准中的event对象并不相同，所以一般的兼容性写法是这样的：12345if (event.preventDefault) &amp;#123;    event.">
+<meta property="og:updated_time" content="2015-08-23T15:23:30.145Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="不要用return false阻止event的默认行为">
+<meta name="twitter:description" content="当我们点击一个a标签时，如果这个标签的href指向了另一个地址，那么浏览器会默认跳转到此地址。在页面中，有时我们需要触发点击事件，但是又不想触发默认行为，就需要阻止event的默认行为了。
+常规做法众所周知，IE早期版本的event对象与DOM标准中的event对象并不相同，所以一般的兼容性写法是这样的：12345if (event.preventDefault) &amp;#123;    event.">
+
+    
+    <link rel="alternative" href="/atom.xml" title="CC&#39;s BLOG" type="application/atom+xml">
+    
+    
+    <link rel="icon" href="/img/favicon.jpg">
+    
+    
+    <link rel="apple-touch-icon" href="/img/jacman.jpg">
+    <link rel="apple-touch-icon-precomposed" href="/img/jacman.jpg">
+    
+    <link rel="stylesheet" href="/css/style.css" type="text/css">
+</head>
+
+  <body>
+    <header>
+      
+<div>
+		
+			<div id="imglogo">
+				<a href="/"><img src="/img/logo.jpg" alt="CC&#39;s BLOG" title="CC&#39;s BLOG"/></a>
+			</div>
+			
+			<div id="textlogo">
+				<h1 class="site-name"><a href="/" title="CC&#39;s BLOG">CC&#39;s BLOG</a></h1>
+				<h2 class="blog-motto">如果你在计划未来，那么就要抓住现在</h2>
+			</div>
+			<div class="navbar"><a class="navbutton navmobile" href="#" title="菜单">
+			</a></div>
+			<nav class="animated">
+				<ul>
+					<ul>
+					 
+						<li><a href="/">主页</a></li>
+					
+						<li><a href="/archives">归档</a></li>
+					
+						<li><a href="/about">关于</a></li>
+					
+					<li>
+ 					
+					<form class="search" action="//google.com/search" method="get" accept-charset="utf-8">
+						<label>Search</label>
+						<input type="search" id="search" name="q" autocomplete="off" maxlength="20" placeholder="搜索" />
+						<input type="hidden" name="q" value="site:cfanlife.github.io">
+					</form>
+					
+					</li>
+				</ul>
+			</nav>			
+</div>
+    </header>
+    <div id="container">
+      <div id="main" class="post" itemscope itemprop="blogPost">
+  
+	<article itemprop="articleBody"> 
+		<header class="article-info clearfix">
+  <h1 itemprop="name">
+    
+      <a href="/2015/08/23/dont-use-return-false-to-prevent-event/" title="不要用return false阻止event的默认行为" itemprop="url">不要用return false阻止event的默认行为</a>
+  </h1>
+  <p class="article-author">By
+       
+		<a href="/about" title="Du Keke" target="_blank" itemprop="author">Du Keke</a>
+		
+  <p class="article-time">
+    <time datetime="2015-08-22T16:00:00.000Z" itemprop="datePublished"> 发表于 2015-08-23</time>
+    
+  </p>
+</header>
+	<div class="article-content">
+		
+		<div id="toc" class="toc-article">
+			<strong class="toc-title">文章目录</strong>
+		
+			<ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#常规做法"><span class="toc-number">1.</span> <span class="toc-text">常规做法</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#非常规(在原生JS下)"><span class="toc-number">2.</span> <span class="toc-text">非常规(在原生JS下)</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#非常规(在jQuery下)"><span class="toc-number">3.</span> <span class="toc-text">非常规(在jQuery下)</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#总结"><span class="toc-number">4.</span> <span class="toc-text">总结</span></a></li></ol>
+		
+		</div>
+		
+		<p>当我们点击一个<code>a</code>标签时，如果这个标签的<code>href</code>指向了另一个地址，那么浏览器会默认跳转到此地址。在页面中，有时我们需要触发点击事件，但是又不想触发默认行为，就需要阻止<code>event</code>的默认行为了。</p>
+<h1 id="常规做法">常规做法</h1><p>众所周知，IE早期版本的<code>event</code>对象与DOM标准中的<code>event</code>对象并不相同，所以一般的兼容性写法是这样的：<br><figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">if</span> (event.preventDefault) &#123;</span><br><span class="line">    event.preventDefault(); <span class="comment">//支持DOM标准的浏览器</span></span><br><span class="line">&#125; <span class="keyword">else</span> &#123;</span><br><span class="line">    event.returnValue = <span class="literal">false</span>; <span class="comment">//IE</span></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
+<h1 id="非常规(在原生JS下)">非常规(在原生JS下)</h1><p>但是还有一种人，喜欢在函数结尾用<code>return false;</code>来阻止<code>event</code>默认行为，不过这种方法覆盖面不全，不建议使用，先来看规范是如何定义的：<br> <a href="http://www.w3.org/TR/DOM-Level-2-Events/events.html#Events-registration" target="_blank" rel="external">W3C Document Object Model Events Specification</a> <em>1.3.1版中。事件注册接口</em> 提及到：</p>
+<blockquote>
+<p><code>handleEvent</code><br> This method is called whenever an event occurs of the type for which the EventListener interface was registered. […] <strong>No Return Value</strong></p>
+</blockquote>
+<p>在 <em>1.2.4. Event Cancelation</em> 文档中也提到：</p>
+<blockquote>
+<p>Cancelation is accomplished by calling the Event’s <code>preventDefault</code> method. If one or more EventListeners call <code>preventDefault</code> during any phase of event flow the default action will be canceled.</p>
+</blockquote>
+<p>HTML5 <a href="http://www.w3.org/TR/html5/webappapis.html#event-handler-attributes" target="_blank" rel="external">Section 6.1.5.1 of the HTML Spec</a>规范定义如下：</p>
+<blockquote>
+<p>Otherwise<br>If return value is a WebIDL boolean false value, then cancel the event.</p>
+</blockquote>
+<p>为什么要OtherWise，因为规范中有指出在<code>mouseover</code>等几种特殊事件情况下，<code>return false;</code>并不一定能终止事件。</p>
+<p>所以，在实际使用中，请尽量避免通过<code>return false;</code>的方式来取消事件的默认行为。</p>
+<h1 id="非常规(在jQuery下)">非常规(在jQuery下)</h1><p>jQuery中，就不是简单的覆盖面和规范的问题了。在jQuery事件处理函数中调用<code>return false;</code>相当于同时调用了<code>preventDefault</code>和<code>stopPropagation</code>方法，这会导致当前元素的事件无法向上冒泡，在事件代理模式下，会导致问题。</p>
+<p>比如，我有一个<code>div</code>容器，里面是 几个<code>a</code>标签，它们的<code>href</code>里分别存储了<code>url</code>地址，这个<code>url</code>被用来动态的载入到下面的<code>div#content</code>中，这里为了简单演示，就只把<code>url</code>字符串写入到<code>div#content</code>中：<br><figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="title">div</span> <span class="attribute">id</span>=<span class="value">"container"</span>&gt;</span></span><br><span class="line">   <span class="tag">&lt;<span class="title">a</span> <span class="attribute">href</span>=<span class="value">"/content1.html"</span>&gt;</span>content1<span class="tag">&lt;/<span class="title">a</span>&gt;</span></span><br><span class="line">   <span class="tag">&lt;<span class="title">a</span> <span class="attribute">href</span>=<span class="value">"/content2.html"</span>&gt;</span>content2<span class="tag">&lt;/<span class="title">a</span>&gt;</span>  </span><br><span class="line">   <span class="tag">&lt;<span class="title">div</span> <span class="attribute">id</span>=<span class="value">"content"</span>&gt;</span>我会根据点击链接的url不同而改变的<span class="tag">&lt;/<span class="title">div</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="title">div</span>&gt;</span></span><br></pre></td></tr></table></figure></p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// 为container下的所有a标签绑定click事件处理函数</span></span><br><span class="line">$(<span class="string">"#container"</span>).click(<span class="function"><span class="keyword">function</span> (<span class="params">e</span>) </span>&#123;</span><br><span class="line">   <span class="keyword">if</span> (e.target.nodeName == <span class="string">"A"</span>) &#123;</span><br><span class="line">        $(<span class="string">"#content"</span>).html(e.target.href);</span><br><span class="line">    &#125;</span><br><span class="line">&#125;);</span><br><span class="line"><span class="comment">// 再为a标签绑定click事件处理函数，阻止默认事件</span></span><br><span class="line">$(<span class="string">"#container a"</span>).click(<span class="function"><span class="keyword">function</span> (<span class="params"></span>) </span>&#123;</span><br><span class="line">  <span class="keyword">return</span> <span class="literal">false</span>;</span><br><span class="line">&#125;);</span><br></pre></td></tr></table></figure>
+<p>上面的代码运行后，虽然阻止了<code>a</code>标签的点击默认行为，但同时停止了冒泡事件，导致其外层的父元素无法检测到<code>click</code>事件，所以jQuery中请明白<code>return false;</code>和<code>preventDefault</code>二者的区别。</p>
+<h1 id="总结">总结</h1><p>不要用<code>return false;</code>来阻止<code>event</code>的默认行为</p>
+  
+	</div>
+		<footer class="article-footer clearfix">
+<div class="article-catetags">
+
+
+</div>
+
+
+
+	<div class="article-share" id="share">
+	
+	  <div data-url="http://cfanlife.github.io/2015/08/23/dont-use-return-false-to-prevent-event/" data-title="不要用return false阻止event的默认行为 | CC&#39;s BLOG" data-tsina="1743290140" class="share clearfix">
+	  </div>
+	
+	</div>
+
+
+</footer>
+
+   	       
+	</article>
+	
+<nav class="article-nav clearfix">
+ 
+
+<div class="next">
+<a href="/2015/07/18/CSS-Pixel/"  title="CSS Pixel与绝对像素">
+ <strong>下一篇：</strong><br/> 
+ <span>CSS Pixel与绝对像素
+</span>
+</a>
+</div>
+
+</nav>
+
+	
+
+</div>  
+      <div class="openaside"><a class="navbutton" href="#" title="显示侧边栏"></a></div>
+
+  <div id="toc" class="toc-aside">
+  <strong class="toc-title">文章目录</strong>
+ 
+ <ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#常规做法"><span class="toc-number">1.</span> <span class="toc-text">常规做法</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#非常规(在原生JS下)"><span class="toc-number">2.</span> <span class="toc-text">非常规(在原生JS下)</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#非常规(在jQuery下)"><span class="toc-number">3.</span> <span class="toc-text">非常规(在jQuery下)</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#总结"><span class="toc-number">4.</span> <span class="toc-text">总结</span></a></li></ol>
+ 
+  </div>
+
+<div id="asidepart">
+<div class="closeaside"><a class="closebutton" href="#" title="隐藏侧边栏"></a></div>
+<aside class="clearfix">
+
+  
+
+  
+
+  
+
+
+  <div class="weiboshow">
+  <p class="asidetitle">新浪微博</p>
+    <iframe width="100%" height="119" class="share_self"  frameborder="0" scrolling="no" src="http://widget.weibo.com/weiboshow/index.php?language=&width=0&height=119&fansRow=2&ptype=1&speed=0&skin=9&isTitle=1&noborder=1&isWeibo=0&isFans=0&uid=1743290140&verifier=7cf53c5c&dpc=1"></iframe>
+</div>
+
+
+  <div class="linkslist">
+  <p class="asidetitle">友情链接</p>
+    <ul>
+        
+          <li>
+            
+            	<a href="http://www.jianshu.com/users/d6e83ee69161/latest_articles" target="_blank" title="可木Changer">可木Changer</a>
+            
+          </li>
+        
+    </ul>
+</div>
+
+</aside>
+</div>
+    </div>
+    <footer><div id="footer" >
+	
+	
+	<div class="social-font" class="clearfix">
+		
+		<a href="http://weibo.com/1743290140" target="_blank" class="icon-weibo" title="微博"></a>
+		
+		
+		<a href="https://github.com/cfanlife" target="_blank" class="icon-github" title="github"></a>
+		
+		
+		
+		
+		
+		
+		
+		
+		
+	</div>
+			
+		
+
+		<p class="copyright">
+		Powered by <a href="http://hexo.io" target="_blank" title="hexo">hexo</a> and Theme Modified From <a href="https://github.com/wuchong/jacman" target="_blank" title="Jacman">Jacman</a> © 2015 
+		
+		<a href="/about" target="_blank" title="Du Keke">Du Keke</a>
+		
+		
+		</p>
+</div>
+</footer>
+    <script src="/js/jquery-2.0.3.min.js"></script>
+<script src="/js/jquery.imagesloaded.min.js"></script>
+<script src="/js/gallery.js"></script>
+
+<script type="text/javascript">
+$(document).ready(function(){ 
+  $('.navbar').click(function(){
+    $('header nav').toggleClass('shownav');
+  });
+  var myWidth = 0;
+  function getSize(){
+    if( typeof( window.innerWidth ) == 'number' ) {
+      myWidth = window.innerWidth;
+    } else if( document.documentElement && document.documentElement.clientWidth) {
+      myWidth = document.documentElement.clientWidth;
+    };
+  };
+  var m = $('#main'),
+      a = $('#asidepart'),
+      c = $('.closeaside'),
+      o = $('.openaside');
+  c.click(function(){
+    a.addClass('fadeOut').css('display', 'none');
+    o.css('display', 'block').addClass('fadeIn');
+    m.addClass('moveMain');
+  });
+  o.click(function(){
+    o.css('display', 'none').removeClass('beforeFadeIn');
+    a.css('display', 'block').removeClass('fadeOut').addClass('fadeIn');      
+    m.removeClass('moveMain');
+  });
+  $(window).scroll(function(){
+    o.css("top",Math.max(80,260-$(this).scrollTop()));
+  });
+  
+        getSize();
+        if (myWidth >= 1024) {
+          c.click();
+        }
+  
+  $(window).resize(function(){
+    getSize(); 
+    if (myWidth >= 1024) {
+      $('header nav').removeClass('shownav');
+    }else{
+      m.removeClass('moveMain');
+      a.css('display', 'block').removeClass('fadeOut');
+      o.css('display', 'none');
+      
+      $('#toc.toc-aside').css('display', 'none');
+        
+    }
+  });
+});
+</script>
+
+<script type="text/javascript">
+$(document).ready(function(){ 
+  var ai = $('.article-content>iframe'),
+      ae = $('.article-content>embed'),
+      t  = $('#toc'),
+      ta = $('#toc.toc-aside'),
+      o  = $('.openaside'),
+      c  = $('.closeaside');
+  if(ai.length>0){
+    ai.wrap('<div class="video-container" />');
+  };
+  if(ae.length>0){
+   ae.wrap('<div class="video-container" />');
+  };
+  c.click(function(){
+    ta.css('display', 'block').addClass('fadeIn');
+  });
+  o.click(function(){
+    ta.css('display', 'none');
+  });
+  $(window).scroll(function(){
+    ta.css("top",Math.max(140,320-$(this).scrollTop()));
+  });
+});
+</script>
+
+
+<script type="text/javascript">
+$(document).ready(function(){ 
+  var $this = $('.share'),
+      url = $this.attr('data-url'),
+      encodedUrl = encodeURIComponent(url),
+      title = $this.attr('data-title'),
+      tsina = $this.attr('data-tsina'),
+      description = $this.attr('description');
+  var html = [
+  '<a href="#" class="overlay" id="qrcode"></a>',
+  '<div class="qrcode clearfix"><span>扫描二维码分享到微信朋友圈</span><a class="qrclose" href="#nothing"></a><strong>Loading...Please wait</strong><img id="qrcode-pic" data-src="http://s.jiathis.com/qrcode.php?url=' + encodedUrl + '"/></div>',
+  '<a href="https://www.facebook.com/sharer.php?u=' + encodedUrl + '" class="article-share-facebook" target="_blank" title="Facebook"></a>',
+  '<a href="https://twitter.com/intent/tweet?url=' + encodedUrl + '" class="article-share-twitter" target="_blank" title="Twitter"></a>',
+  '<a href="#qrcode" class="article-share-qrcode" title="微信"></a>',
+  '<a href="http://widget.renren.com/dialog/share?resourceUrl=' + encodedUrl + '&srcUrl=' + encodedUrl + '&title=' + title +'" class="article-share-renren" target="_blank" title="人人"></a>',
+  '<a href="http://service.weibo.com/share/share.php?title='+title+'&url='+encodedUrl +'&ralateUid='+ tsina +'&searchPic=true&style=number' +'" class="article-share-weibo" target="_blank" title="微博"></a>',
+  '<span title="Share to"></span>'
+  ].join('');
+  $this.append(html);
+  $('.article-share-qrcode').click(function(){
+    var imgSrc = $('#qrcode-pic').attr('data-src');
+    $('#qrcode-pic').attr('src', imgSrc);
+    $('#qrcode-pic').load(function(){
+        $('.qrcode strong').text(' ');
+    });
+  });
+});     
+</script>
+
+
+
+
+
+
+
+
+
+<link rel="stylesheet" href="/fancybox/jquery.fancybox.css" media="screen" type="text/css">
+<script src="/fancybox/jquery.fancybox.pack.js"></script>
+<script type="text/javascript">
+$(document).ready(function(){ 
+  $('.article-content').each(function(i){
+    $(this).find('img').each(function(){
+      if ($(this).parent().hasClass('fancybox')) return;
+      var alt = this.alt;
+      if (alt) $(this).after('<span class="caption">' + alt + '</span>');
+      $(this).wrap('<a href="' + this.src + '" title="' + alt + '" class="fancybox"></a>');
+    });
+    $(this).find('.fancybox').each(function(){
+      $(this).attr('rel', 'article' + i);
+    });
+  });
+  if($.fancybox){
+    $('.fancybox').fancybox();
+  }
+}); 
+</script>
+
+
+
+<!-- Analytics Begin -->
+
+
+
+
+
+<!-- Analytics End -->
+
+<!-- Totop Begin -->
+
+	<div id="totop">
+	<a title="返回顶部"><img src="/img/scrollup.png"/></a>
+	</div>
+	<script src="/js/totop.js"></script>
+
+<!-- Totop End -->
+
+<!-- MathJax Begin -->
+<!-- mathjax config similar to math.stackexchange -->
+
+
+<!-- MathJax End -->
+
+<!-- Tiny_search Begin -->
+
+<!-- Tiny_search End -->
+
+  </body>
+</html>
