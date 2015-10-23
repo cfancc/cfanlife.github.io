@@ -1,0 +1,437 @@
+
+ <!DOCTYPE HTML>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+  
+    <title>null和undefined | CC&#39;s BLOG</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1,user-scalable=no">
+    
+    <meta name="author" content="Du Keke">
+    
+
+    
+    <meta name="description" content="众所周知，JavaScript中的基本类型（基本类型指它们的值不是一个对象并且没有任何方法）为：String/Number/Bool/Null/Undefined/Symbol (ECMAScript 2015新增)
+前几种是很容易弄明白的，但是Null/Undefined总是相互纠缠，让人弄不明白。之前一直没有在意Null 和 Undefined类型根本的差别，只是简单的了解一下，今天被面试官问">
+<meta property="og:type" content="article">
+<meta property="og:title" content="null和undefined">
+<meta property="og:url" content="http://cfanlife.github.io/2015/09/23/null-and-undefined/index.html">
+<meta property="og:site_name" content="CC's BLOG">
+<meta property="og:description" content="众所周知，JavaScript中的基本类型（基本类型指它们的值不是一个对象并且没有任何方法）为：String/Number/Bool/Null/Undefined/Symbol (ECMAScript 2015新增)
+前几种是很容易弄明白的，但是Null/Undefined总是相互纠缠，让人弄不明白。之前一直没有在意Null 和 Undefined类型根本的差别，只是简单的了解一下，今天被面试官问">
+<meta property="og:image" content="http://upload-images.jianshu.io/upload_images/56687-5f7aaa603716d67e.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240">
+<meta property="og:updated_time" content="2015-10-23T06:15:53.768Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="null和undefined">
+<meta name="twitter:description" content="众所周知，JavaScript中的基本类型（基本类型指它们的值不是一个对象并且没有任何方法）为：String/Number/Bool/Null/Undefined/Symbol (ECMAScript 2015新增)
+前几种是很容易弄明白的，但是Null/Undefined总是相互纠缠，让人弄不明白。之前一直没有在意Null 和 Undefined类型根本的差别，只是简单的了解一下，今天被面试官问">
+
+    
+    <link rel="alternative" href="/atom.xml" title="CC&#39;s BLOG" type="application/atom+xml">
+    
+    
+    <link rel="icon" href="/img/favicon.jpg">
+    
+    
+    <link rel="apple-touch-icon" href="/img/jacman.jpg">
+    <link rel="apple-touch-icon-precomposed" href="/img/jacman.jpg">
+    
+    <link rel="stylesheet" href="/css/style.css" type="text/css">
+</head>
+
+  <body>
+    <header>
+      
+<div>
+		
+			<div id="imglogo">
+				<a href="/"><img src="/img/logo.jpg" alt="CC&#39;s BLOG" title="CC&#39;s BLOG"/></a>
+			</div>
+			
+			<div id="textlogo">
+				<h1 class="site-name"><a href="/" title="CC&#39;s BLOG">CC&#39;s BLOG</a></h1>
+				<h2 class="blog-motto">如果你在计划未来，那么就要抓住现在</h2>
+			</div>
+			<div class="navbar"><a class="navbutton navmobile" href="#" title="菜单">
+			</a></div>
+			<nav class="animated">
+				<ul>
+					<ul>
+					 
+						<li><a href="/">主页</a></li>
+					
+						<li><a href="/archives">归档</a></li>
+					
+						<li><a href="/about">关于</a></li>
+					
+					<li>
+ 					
+					<form class="search" action="//google.com/search" method="get" accept-charset="utf-8">
+						<label>Search</label>
+						<input type="search" id="search" name="q" autocomplete="off" maxlength="20" placeholder="搜索" />
+						<input type="hidden" name="q" value="site:cfanlife.github.io">
+					</form>
+					
+					</li>
+				</ul>
+			</nav>			
+</div>
+    </header>
+    <div id="container">
+      <div id="main" class="post" itemscope itemprop="blogPost">
+  
+	<article itemprop="articleBody"> 
+		<header class="article-info clearfix">
+  <h1 itemprop="name">
+    
+      <a href="/2015/09/23/null-and-undefined/" title="null和undefined" itemprop="url">null和undefined</a>
+  </h1>
+  <p class="article-author">By
+       
+		<a href="/about" title="Du Keke" target="_blank" itemprop="author">Du Keke</a>
+		
+  <p class="article-time">
+    <time datetime="2015-09-22T16:00:00.000Z" itemprop="datePublished"> 发表于 2015-09-23</time>
+    
+  </p>
+</header>
+	<div class="article-content">
+		
+		<div id="toc" class="toc-article">
+			<strong class="toc-title">文章目录</strong>
+		
+			<ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="###规范中的描述："><span class="toc-number">1.</span> <span class="toc-text">##规范中的描述：</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="###MDN文档中的描述："><span class="toc-number">2.</span> <span class="toc-text">##MDN文档中的描述：</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="###疑惑点："><span class="toc-number">3.</span> <span class="toc-text">##疑惑点：</span></a></li></ol>
+		
+		</div>
+		
+		<p><img src="http://upload-images.jianshu.io/upload_images/56687-5f7aaa603716d67e.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240" alt="null And undefined"><br>众所周知，JavaScript中的基本类型（基本类型指它们的值不是一个对象并且没有任何方法）为：String/Number/Bool/Null/Undefined/Symbol (ECMAScript 2015新增)</p>
+<p>前几种是很容易弄明白的，但是Null/Undefined总是相互纠缠，让人弄不明白。之前一直没有在意Null 和 Undefined类型根本的差别，只是简单的了解一下，今天被面试官问到：<strong>请说一下null 和 undefined的区别</strong>。我张了张嘴，竟然没法准确地答出来。</p>
+<p>回来翻了翻各种资料，包括MDN上的资料、ECMAScript规范、红宝书，发现这还真是一个世界性难题。</p>
+<h2 id="##规范中的描述：">##规范中的描述：</h2><p>ECMAScript-262 <a href="http://www.ecma-international.org/publications/files/ECMA-ST-ARCH/ECMA-262,%203rd%20edition,%20December%201999.pdf" target="_blank" rel="external">3th Edition</a>:</p>
+<blockquote>
+<p>4.3.9 Undefined Value<br>The undefined value is a primitive value used when a variable has not been assigned a value.<br>// undefined是一个原始值，一个变量尚未被分配一个值时会使用到它</p>
+<p>4.3.11 Null Value<br>The null value is a primitive value that represents the null, empty, or non-existent reference.<br>// null是一个原始值，被用来表示零、空或者不存在的引用</p>
+</blockquote>
+<p>ECMAScript-262 <a href="http://www.ecma-international.org/publications/files/ECMA-ST-ARCH/ECMA-262%205th%20edition%20December%202009.pdf" target="_blank" rel="external">5th Edition</a> And <a href="http://www.ecma-international.org/publications/files/ECMA-ST/Ecma-262.pdf" target="_blank" rel="external">6th Edition</a>(相较于3th版基本没有变动):</p>
+<blockquote>
+<p>4.3.9<br>undefined value<br>primitive value used when a variable has not been assigned a value.<br>// 原始值，一个变量尚未被分配值时会被使用到<br>4.3.11<br>null value<br>primitive value that represents the intentional absence of any object value.<br>// 原始值，表示对任何对象值的<strong>有意</strong>的缺失</p>
+</blockquote>
+<h2 id="##MDN文档中的描述：">##MDN文档中的描述：</h2><ul>
+<li>undefined<br>一个未被赋值的变量默认是Undefined类型。函数没有返回值也会返回<code>undefined</code>。<br>PS:[<em>undefined也是全局对象的一个属性。这个属性的的初始值是基本值<code>undefined</code>。<br>在现代浏览器当中，undefined全局属性在ECMAScript 5 规范中的定义是一个不可被配置、不可被写的属性。</em>]</li>
+<li>null<br><code>null</code>值是一个字面量(不像<code>undefined</code>可以是全局对象的一个属性)。<br> <code>null</code>经常被用来表示一个对象应该存在但是没有对应的相关项。<figure class="highlight actionscript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">typeof</span>  <span class="literal">null</span>  <span class="comment">// object (bug in ECMAScript, should be null)</span></span><br><span class="line"><span class="keyword">typeof</span> <span class="literal">undefined</span>  <span class="comment">// undefined</span></span><br><span class="line"><span class="literal">null</span> === <span class="literal">undefined</span> <span class="comment">// false</span></span><br><span class="line"><span class="literal">null</span> == <span class="literal">undefined</span> <span class="comment">// true</span></span><br></pre></td></tr></table></figure>
+</li>
+</ul>
+<p>##JavaScript高级程序设计里的描述：</p>
+<ul>
+<li>在使用var生命变量但未对其加以初始化时，这个变量的值就是undefined</li>
+<li>从逻辑角度来看，null值表示一个空对象指针，而这也正是使用typeof操作符检测null值会返回<code>object</code>的原因（这里表述的不够准确，现在普遍认为这是ECMAScript中的一个bug）。如果定义的变量准备在将来用于保存对象，那么最好将该变量初始化为null而不是其它值。</li>
+</ul>
+<h2 id="##疑惑点：">##疑惑点：</h2><ul>
+<li><p>null与空指针</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="number">5</span> + <span class="literal">null</span>   <span class="comment">// 5</span></span><br><span class="line"><span class="number">5</span> + <span class="literal">undefined</span>  <span class="comment">//NaN</span></span><br></pre></td></tr></table></figure>
+<p>null在其它语言中经常被用来当作空指针使用。空指针是一个特殊的指针值。指针变量具有空指针值，表示它当时处于闲置状态，没有指向任何有意义的东西。空指针指向内存的0地址，但是0地址附近的空间是归操作系统所有，别的指向是不允许使用的。所以指针指向0地址是为了使指针指向一个已知的地方防止成为野指针。</p>
+<p>这么考虑下来在JS当中参与数字运算的时候，把null值转换成0也不是没有道理，而undefined就没有这层含义了，所以不能参与和数字的运算，但是值得注意的是：</p>
+<figure class="highlight stylus"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="title">parseInt</span><span class="params">(null)</span></span>  <span class="comment">// NaN</span></span><br><span class="line"><span class="function"><span class="title">parseInt</span><span class="params">(undefined)</span></span>  <span class="comment">// NaN</span></span><br></pre></td></tr></table></figure>
+</li>
+<li><p>undefined与undeclared</p>
+<p>undefined 表示一个变量被声明（declared），但未被赋值。(不代表一个变量未被声明！！！可以认为是该变量的值undefined，而不是变量undefined，变量已经定义了)</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">console</span>.log(a);  <span class="comment">// Uncaught ReferenceError: a is not defined</span></span><br></pre></td></tr></table></figure>
+<p>上面提示很具有迷惑性，说a not defined，那就是undefined喽？NONONO!这里是指a未被声明，称之为undeclared更为准确。</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">var</span> a;</span><br><span class="line"><span class="built_in">console</span>.log(a) <span class="comment">// undefined</span></span><br></pre></td></tr></table></figure>
+<p>上面定义了a，但是未赋值，所以默认值为undefined<br>注意：请不要手动将一个变量设为undefined，这是没有意义的，如果不想要它，请把它delete.</p>
+<p>typeof a (a是一个没有声明过的变量或是声明了没有赋值) 都会出现undefined;</p>
+</li>
+<li><p>typeof null === ‘object’<br>这是ECMAScript中的一个bug，不是代表null是一个对象。曾经有人提议改变这一点，但如果改变结果的话，将使很多旧的脚本无法运行，所以没有采纳。null只是被用来说明这里可以放一个对象的地址，但是当前什么都没放，是个空指针。</p>
+</li>
+</ul>
+<p>参考资料：</p>
+<blockquote>
+<p>阮一峰老师的文章（图片也是来自此文）:<br><a href="http://www.ruanyifeng.com/blog/2014/03/undefined-vs-null.html" target="_blank" rel="external">http://www.ruanyifeng.com/blog/2014/03/undefined-vs-null.html</a></p>
+<p>Stack OverFlow上问题：<a href="http://stackoverflow.com/questions/5076944/what-is-the-difference-between-null-and-undefined-in-javascript" target="_blank" rel="external">http://stackoverflow.com/questions/5076944/what-is-the-difference-between-null-and-undefined-in-javascript</a></p>
+<p>ECMAScript规范：<a href="http://www.ecmascript.org/" target="_blank" rel="external">http://www.ecmascript.org/</a></p>
+<p>MDN：<br><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/null" target="_blank" rel="external">https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/null</a><br><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/undefined" target="_blank" rel="external">https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/undefined</a></p>
+</blockquote>
+  
+	</div>
+		<footer class="article-footer clearfix">
+<div class="article-catetags">
+
+
+</div>
+
+
+
+	<div class="article-share" id="share">
+	
+	  <div data-url="http://cfanlife.github.io/2015/09/23/null-and-undefined/" data-title="null和undefined | CC&#39;s BLOG" data-tsina="1743290140" class="share clearfix">
+	  </div>
+	
+	</div>
+
+
+</footer>
+
+   	       
+	</article>
+	
+<nav class="article-nav clearfix">
+ 
+
+<div class="next">
+<a href="/2015/08/23/dont-use-return-false-to-prevent-event/"  title="不要用return false阻止event的默认行为">
+ <strong>下一篇：</strong><br/> 
+ <span>不要用return false阻止event的默认行为
+</span>
+</a>
+</div>
+
+</nav>
+
+	
+
+</div>  
+      <div class="openaside"><a class="navbutton" href="#" title="显示侧边栏"></a></div>
+
+  <div id="toc" class="toc-aside">
+  <strong class="toc-title">文章目录</strong>
+ 
+ <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="###规范中的描述："><span class="toc-number">1.</span> <span class="toc-text">##规范中的描述：</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="###MDN文档中的描述："><span class="toc-number">2.</span> <span class="toc-text">##MDN文档中的描述：</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="###疑惑点："><span class="toc-number">3.</span> <span class="toc-text">##疑惑点：</span></a></li></ol>
+ 
+  </div>
+
+<div id="asidepart">
+<div class="closeaside"><a class="closebutton" href="#" title="隐藏侧边栏"></a></div>
+<aside class="clearfix">
+
+  
+
+  
+
+  
+
+
+  <div class="weiboshow">
+  <p class="asidetitle">新浪微博</p>
+    <iframe width="100%" height="119" class="share_self"  frameborder="0" scrolling="no" src="http://widget.weibo.com/weiboshow/index.php?language=&width=0&height=119&fansRow=2&ptype=1&speed=0&skin=9&isTitle=1&noborder=1&isWeibo=0&isFans=0&uid=1743290140&verifier=7cf53c5c&dpc=1"></iframe>
+</div>
+
+
+  <div class="linkslist">
+  <p class="asidetitle">友情链接</p>
+    <ul>
+        
+          <li>
+            
+            	<a href="http://www.jianshu.com/users/d6e83ee69161/latest_articles" target="_blank" title="可木Changer">可木Changer</a>
+            
+          </li>
+        
+    </ul>
+</div>
+
+</aside>
+</div>
+    </div>
+    <footer><div id="footer" >
+	
+	
+	<div class="social-font" class="clearfix">
+		
+		<a href="http://weibo.com/1743290140" target="_blank" class="icon-weibo" title="微博"></a>
+		
+		
+		<a href="https://github.com/cfanlife" target="_blank" class="icon-github" title="github"></a>
+		
+		
+		
+		
+		
+		
+		
+		
+		
+	</div>
+			
+		
+
+		<p class="copyright">
+		Powered by <a href="http://hexo.io" target="_blank" title="hexo">hexo</a> and Theme Modified From <a href="https://github.com/wuchong/jacman" target="_blank" title="Jacman">Jacman</a> © 2015 
+		
+		<a href="/about" target="_blank" title="Du Keke">Du Keke</a>
+		
+		
+		</p>
+</div>
+</footer>
+    <script src="/js/jquery-2.0.3.min.js"></script>
+<script src="/js/jquery.imagesloaded.min.js"></script>
+<script src="/js/gallery.js"></script>
+
+<script type="text/javascript">
+$(document).ready(function(){ 
+  $('.navbar').click(function(){
+    $('header nav').toggleClass('shownav');
+  });
+  var myWidth = 0;
+  function getSize(){
+    if( typeof( window.innerWidth ) == 'number' ) {
+      myWidth = window.innerWidth;
+    } else if( document.documentElement && document.documentElement.clientWidth) {
+      myWidth = document.documentElement.clientWidth;
+    };
+  };
+  var m = $('#main'),
+      a = $('#asidepart'),
+      c = $('.closeaside'),
+      o = $('.openaside');
+  c.click(function(){
+    a.addClass('fadeOut').css('display', 'none');
+    o.css('display', 'block').addClass('fadeIn');
+    m.addClass('moveMain');
+  });
+  o.click(function(){
+    o.css('display', 'none').removeClass('beforeFadeIn');
+    a.css('display', 'block').removeClass('fadeOut').addClass('fadeIn');      
+    m.removeClass('moveMain');
+  });
+  $(window).scroll(function(){
+    o.css("top",Math.max(80,260-$(this).scrollTop()));
+  });
+  
+        getSize();
+        if (myWidth >= 1024) {
+          c.click();
+        }
+  
+  $(window).resize(function(){
+    getSize(); 
+    if (myWidth >= 1024) {
+      $('header nav').removeClass('shownav');
+    }else{
+      m.removeClass('moveMain');
+      a.css('display', 'block').removeClass('fadeOut');
+      o.css('display', 'none');
+      
+      $('#toc.toc-aside').css('display', 'none');
+        
+    }
+  });
+});
+</script>
+
+<script type="text/javascript">
+$(document).ready(function(){ 
+  var ai = $('.article-content>iframe'),
+      ae = $('.article-content>embed'),
+      t  = $('#toc'),
+      ta = $('#toc.toc-aside'),
+      o  = $('.openaside'),
+      c  = $('.closeaside');
+  if(ai.length>0){
+    ai.wrap('<div class="video-container" />');
+  };
+  if(ae.length>0){
+   ae.wrap('<div class="video-container" />');
+  };
+  c.click(function(){
+    ta.css('display', 'block').addClass('fadeIn');
+  });
+  o.click(function(){
+    ta.css('display', 'none');
+  });
+  $(window).scroll(function(){
+    ta.css("top",Math.max(140,320-$(this).scrollTop()));
+  });
+});
+</script>
+
+
+<script type="text/javascript">
+$(document).ready(function(){ 
+  var $this = $('.share'),
+      url = $this.attr('data-url'),
+      encodedUrl = encodeURIComponent(url),
+      title = $this.attr('data-title'),
+      tsina = $this.attr('data-tsina'),
+      description = $this.attr('description');
+  var html = [
+  '<a href="#" class="overlay" id="qrcode"></a>',
+  '<div class="qrcode clearfix"><span>扫描二维码分享到微信朋友圈</span><a class="qrclose" href="#nothing"></a><strong>Loading...Please wait</strong><img id="qrcode-pic" data-src="http://s.jiathis.com/qrcode.php?url=' + encodedUrl + '"/></div>',
+  '<a href="https://www.facebook.com/sharer.php?u=' + encodedUrl + '" class="article-share-facebook" target="_blank" title="Facebook"></a>',
+  '<a href="https://twitter.com/intent/tweet?url=' + encodedUrl + '" class="article-share-twitter" target="_blank" title="Twitter"></a>',
+  '<a href="#qrcode" class="article-share-qrcode" title="微信"></a>',
+  '<a href="http://widget.renren.com/dialog/share?resourceUrl=' + encodedUrl + '&srcUrl=' + encodedUrl + '&title=' + title +'" class="article-share-renren" target="_blank" title="人人"></a>',
+  '<a href="http://service.weibo.com/share/share.php?title='+title+'&url='+encodedUrl +'&ralateUid='+ tsina +'&searchPic=true&style=number' +'" class="article-share-weibo" target="_blank" title="微博"></a>',
+  '<span title="Share to"></span>'
+  ].join('');
+  $this.append(html);
+  $('.article-share-qrcode').click(function(){
+    var imgSrc = $('#qrcode-pic').attr('data-src');
+    $('#qrcode-pic').attr('src', imgSrc);
+    $('#qrcode-pic').load(function(){
+        $('.qrcode strong').text(' ');
+    });
+  });
+});     
+</script>
+
+
+
+
+
+
+
+
+
+<link rel="stylesheet" href="/fancybox/jquery.fancybox.css" media="screen" type="text/css">
+<script src="/fancybox/jquery.fancybox.pack.js"></script>
+<script type="text/javascript">
+$(document).ready(function(){ 
+  $('.article-content').each(function(i){
+    $(this).find('img').each(function(){
+      if ($(this).parent().hasClass('fancybox')) return;
+      var alt = this.alt;
+      if (alt) $(this).after('<span class="caption">' + alt + '</span>');
+      $(this).wrap('<a href="' + this.src + '" title="' + alt + '" class="fancybox"></a>');
+    });
+    $(this).find('.fancybox').each(function(){
+      $(this).attr('rel', 'article' + i);
+    });
+  });
+  if($.fancybox){
+    $('.fancybox').fancybox();
+  }
+}); 
+</script>
+
+
+
+<!-- Analytics Begin -->
+
+
+
+
+
+<!-- Analytics End -->
+
+<!-- Totop Begin -->
+
+	<div id="totop">
+	<a title="返回顶部"><img src="/img/scrollup.png"/></a>
+	</div>
+	<script src="/js/totop.js"></script>
+
+<!-- Totop End -->
+
+<!-- MathJax Begin -->
+<!-- mathjax config similar to math.stackexchange -->
+
+
+<!-- MathJax End -->
+
+<!-- Tiny_search Begin -->
+
+<!-- Tiny_search End -->
+
+  </body>
+</html>
